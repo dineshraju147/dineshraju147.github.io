@@ -91,10 +91,10 @@
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"browserTarget": "JayantGoel001:build:production"
+							"browserTarget": "JayantGoel001:build"
 						},
 						"development": {
-							"browserTarget": "JayantGoel001:build:development"
+							"browserTarget": "JayantGoel001:build"
 						}
 					},
 					"defaultConfiguration": "development"
