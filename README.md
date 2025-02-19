@@ -1,4 +1,3 @@
-
 <h1 align="center"> 
 	<a href="https://JayantGoel001.github.io/">JayantGoel001.github.io</a> - v2.0
 	<p align="center">
@@ -540,4 +539,3 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 This project is [MIT](https://opensource.org/licenses/MIT) licensed.<br/>
 Copyright &copy; 2021 Jayant Goel. All rights reserved. 
-
