@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1740946440020,
+  "timestamp": 1740949645981,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -60,7 +60,7 @@
         "/assets/images/Profile-pic-192x192.png",
         "/assets/images/Profile-pic-384x384.png",
         "/assets/images/Profile-pic-512x512.png",
-        "/assets/images/Profile-pic.png",
+        "/assets/images/Profile-pic.webp",
         "/assets/images/about-bg.svg",
         "/assets/images/achievement/30DayChallenge.webp",
         "/assets/images/achievement/DataScience.webp",
@@ -131,7 +131,7 @@
     "/assets/images/Profile-pic-192x192.png": "31f21c30314e308410cee9df02b5ab8cc35a25f9",
     "/assets/images/Profile-pic-384x384.png": "46a2e51e7c22d361dcc100d8bffd961f344b78f7",
     "/assets/images/Profile-pic-512x512.png": "ad6b2b5f550bdc15a9f60a50b522fff6e0933c2a",
-    "/assets/images/Profile-pic.png": "3766451cea9f708cdd1a8a2f994af22ccdd87691",
+    "/assets/images/Profile-pic.webp": "842504cbe7263c8bd5e0392ee0fa1d9e8b05909f",
     "/assets/images/about-bg.svg": "2f4e718723ee93de8349ca37808a09b0d5bbce6c",
     "/assets/images/achievement/30DayChallenge.webp": "4f5911d2502afeb0148c63ac8d2f5b1c5c792524",
     "/assets/images/achievement/DataScience.webp": "d17f698e61b409b529a209fcf6620a9b415dbd7e",
