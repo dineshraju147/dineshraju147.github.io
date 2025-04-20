@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1740949645981,
+  "timestamp": 1745158412012,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -18,7 +18,7 @@
         "/index.html",
         "/main-BHN7KWSC.js",
         "/polyfills-EONH2QZO.js",
-        "/scripts-J5DV3ZA7.js",
+        "/scripts-RV3VFG6O.js",
         "/styles-EOAKSHM6.css"
       ],
       "patterns": []
@@ -65,8 +65,6 @@
         "/assets/images/achievement/30DayChallenge.webp",
         "/assets/images/achievement/DataScience.webp",
         "/assets/images/achievement/HackerRank.webp",
-        "/assets/images/achievement/Hacktoberfest.webp",
-        "/assets/images/achievement/Health Insurance cost tile.svg",
         "/assets/images/achievement/microsoft pl300.webp",
         "/assets/images/background-image.jpg",
         "/assets/images/bgimg.webp",
@@ -105,7 +103,7 @@
     "/apple-touch-icon.png": "8218fb45b26dea0f140a388bcc06c918d08f1d1d",
     "/assets/css/animate.min.css": "4ce4e9a3c083a51cc474b62f755108b9c81e5881",
     "/assets/css/font-awesome.min.css": "daa3daa1dfb9c80bb635d4db60bf77bc6fd6d7fa",
-    "/assets/data.min.js": "ee01d5f25add547ed521fd3945c8d32dd606f1f6",
+    "/assets/data.min.js": "7b0c21826e978ffa49fb01dea10708daf9505e72",
     "/assets/fonts/BlackOpsOne.eot": "a922adecfeba3ea43f4e644183728cdd1692dbb4",
     "/assets/fonts/BlackOpsOne.svg": "7c13e5df4822e44cfe78f1291757ef7fc4af6d8a",
     "/assets/fonts/BlackOpsOne.ttf": "024e07e45eefb57d4e55fffc082711c2d653e941",
@@ -136,9 +134,7 @@
     "/assets/images/achievement/30DayChallenge.webp": "4f5911d2502afeb0148c63ac8d2f5b1c5c792524",
     "/assets/images/achievement/DataScience.webp": "d17f698e61b409b529a209fcf6620a9b415dbd7e",
     "/assets/images/achievement/HackerRank.webp": "0d4df017c764d5e16a7e847e43bd21af8f061c26",
-    "/assets/images/achievement/Hacktoberfest.webp": "1dc3b04d84f75f5620f84b0f97ca1c913f1d36ee",
-    "/assets/images/achievement/Health Insurance cost tile.svg": "b0ecbf0db632e9fe9b14f3d8970534a1271d50b7",
-    "/assets/images/achievement/microsoft pl300.webp": "5bded4003877f3096ccd91e896a4e537bfc57124",
+    "/assets/images/achievement/microsoft pl300.webp": "f7f74969b9a21da3436d4d3b3a6f27d34f6d9ff2",
     "/assets/images/background-image.jpg": "cf7409cb59d89e1b31741266201ccaa6e7514c84",
     "/assets/images/bgimg.webp": "825d33dda8bbc1f4a7f211b168428414d32e517d",
     "/assets/images/footer-cloud.svg": "1155d58266f7d048187fadd916618298c0daf9e3",
@@ -171,10 +167,10 @@
     "/favicon-16x16.png": "897f537be9e5741b714b45fab9d24a28830f22bd",
     "/favicon-32x32.png": "053c8fbd3b9a6acc1b02f32172933ddad15cb0c9",
     "/favicon.ico": "61ea5e23b3647a514301fbc841632aa209c0902f",
-    "/index.html": "fff21cb99c94475d2ca9f6b8d07a34788195a669",
+    "/index.html": "a545c431bafca720ca5460b23606823a5f2897ba",
     "/main-BHN7KWSC.js": "78403d8980718bcb165711cf7cf9424bf28fa44f",
     "/polyfills-EONH2QZO.js": "e61db933651ae257d0c246b446cd1f470be08f78",
-    "/scripts-J5DV3ZA7.js": "53b5023985efc354bafb4b25307dd982d52b56c0",
+    "/scripts-RV3VFG6O.js": "0612f98677bf1271b21bedcf48a9d24f9af1ade2",
     "/styles-EOAKSHM6.css": "57b42d561b0f2e197d89389f5f37a817739d5092"
   },
   "navigationUrls": [
