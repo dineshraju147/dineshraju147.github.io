@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — signal lost</title>
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="2; url=/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050806'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='16' fill='%2360ffb0'%3E%3E_%3C/text%3E%3C/svg%3E" />
+  <style>
+    html,body{height:100%;margin:0}
+    body{
+      background:radial-gradient(120% 120% at 50% 20%,#0b120d,#050806 60%,#030503);
+      color:#60ffb0;font:16px/1.6 "IBM Plex Mono",ui-monospace,Menlo,monospace;
+      display:grid;place-items:center;text-align:center;padding:2rem;
+      text-shadow:0 0 8px rgba(96,255,176,0.25);
+    }
+    .box{max-width:34rem}
+    .big{font-size:clamp(3rem,14vw,7rem);font-weight:700;letter-spacing:.1em;color:#d6ffe9;margin:0 0 .3em}
+    a{color:#7cf0ff;text-decoration:none;border-bottom:1px dotted #7cf0ff}
+    .dim{color:#2f9e6a}
+    .blink{animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <p class="big">404</p>
+    <p><span class="dim">dinesh@brain:~$</span> cd <span class="dim">$(that_page)</span></p>
+    <p>bash: no such file or directory — that route was never mounted.</p>
+    <p class="dim">redirecting you home<span class="blink">_</span></p>
+    <p><a href="/">→ cd /  (back to the terminal)</a></p>
+  </div>
+</body>
+</html>

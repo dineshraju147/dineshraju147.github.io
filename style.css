@@ -1,0 +1,387 @@
+/* =========================================================================
+   dinesh@brain — CRT terminal portfolio
+   One monospace face. Themeable phosphor. The tube is stacked CSS overlays.
+   ========================================================================= */
+
+/* ---- Theme tokens: one attribute swap recolors the whole tube ---------- */
+:root {
+  --bg:        #050806;
+  --bg-2:      #030503;
+  --phos:      #60ffb0;   /* primary phosphor */
+  --phos-dim:  #2f9e6a;   /* muted text */
+  --phos-hi:   #d6ffe9;   /* highlights */
+  --accent:    #7cf0ff;   /* secondary accent */
+  --warn:      #ffd36b;
+  --glow:      rgba(96, 255, 176, 0.55);
+  --glow-soft: rgba(96, 255, 176, 0.18);
+  --scan:      rgba(0, 0, 0, 0.32);
+  --link:      #7cf0ff;
+
+  --font: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --cell: min(2.05vw, 15px);   /* body glyph size, fluid but capped */
+}
+
+:root[data-theme="amber"] {
+  --phos:     #ffc04d;
+  --phos-dim: #b07a1e;
+  --phos-hi:  #ffe9c2;
+  --accent:   #ff9d5c;
+  --glow:      rgba(255, 192, 77, 0.55);
+  --glow-soft: rgba(255, 192, 77, 0.18);
+  --link:     #ffd88a;
+}
+
+:root[data-theme="ice"] {
+  --phos:     #bfe6ff;
+  --phos-dim: #5f8fb0;
+  --phos-hi:  #eef8ff;
+  --accent:   #9fd0ff;
+  --glow:      rgba(191, 230, 255, 0.55);
+  --glow-soft: rgba(191, 230, 255, 0.16);
+  --link:     #d6ecff;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(120% 120% at 50% 8%, #0b120d 0%, var(--bg) 45%, var(--bg-2) 100%);
+  color: var(--phos);
+  font-family: var(--font);
+  font-size: var(--cell);
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Matrix rain lives behind everything ------------------------------- */
+#rain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  mix-blend-mode: screen;
+}
+#rain.on { opacity: 1; pointer-events: auto; }
+
+/* ---- CRT enclosure ----------------------------------------------------- */
+.crt {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(0px, 2.5vmin, 28px);
+}
+
+.bezel {
+  position: relative;
+  width: min(1180px, 100%);
+  height: min(860px, 100%);
+  border-radius: 22px;
+  padding: clamp(10px, 2.2vmin, 26px);
+  background:
+    linear-gradient(180deg, #1a1c1a, #0c0d0c 60%, #060706);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 0 0 1px rgba(0,0,0,0.6),
+    0 30px 80px rgba(0,0,0,0.7),
+    0 2px 0 rgba(255,255,255,0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.screen {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  border-radius: 14px / 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(130% 120% at 50% 40%, #071009 0%, #050a07 55%, #02040300 100%),
+    var(--bg);
+  box-shadow:
+    inset 0 0 3px rgba(0,0,0,0.9),
+    inset 0 0 120px rgba(0,0,0,0.9);
+  /* subtle barrel curvature */
+  transform: perspective(1400px);
+  animation: power-on 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* CRT power-on: a quick bloom then settle */
+@keyframes power-on {
+  0%   { transform: perspective(1400px) scale(1.004, 0.002); filter: brightness(3) saturate(0); opacity: 0; }
+  8%   { transform: perspective(1400px) scale(1.004, 0.006); filter: brightness(3) saturate(0); opacity: 1; }
+  32%  { transform: perspective(1400px) scale(1, 1); filter: brightness(1.5) saturate(0.6); }
+  55%  { filter: brightness(0.85); }
+  100% { transform: perspective(1400px) scale(1, 1); filter: brightness(1); opacity: 1; }
+}
+
+/* Scanlines */
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 1.5px,
+      var(--scan) 2.5px,
+      var(--scan) 3px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,0,60,0.028), rgba(0,255,120,0.02), rgba(0,120,255,0.028)
+    );
+  background-size: 100% 3px, 3px 100%;
+  animation: scanroll 8s linear infinite;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+/* a single bright scan bar drifting down the tube */
+.screen > .rollbar {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 22%;
+  z-index: 42;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--glow-soft), transparent);
+  opacity: 0.5;
+  animation: rollbar 9s linear infinite;
+  mix-blend-mode: screen;
+}
+@keyframes rollbar {
+  0%   { transform: translateY(-30%); }
+  100% { transform: translateY(560%); }
+}
+
+/* Vignette + corner glare + faint flicker */
+.screen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 130% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%),
+    radial-gradient(60% 40% at 22% 8%, var(--glow-soft), transparent 60%);
+  animation: flicker 7s infinite steps(60);
+}
+
+@keyframes scanroll { from { background-position: 0 0; } to { background-position: 0 100%; } }
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97% { opacity: 0.86; }
+  98% { opacity: 1; }
+  99% { opacity: 0.92; }
+}
+
+/* ---- Boot + terminal panes -------------------------------------------- */
+.boot, .term {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: clamp(14px, 2.6vmin, 30px);
+  padding-bottom: 3.2em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--phos-dim) transparent;
+  text-shadow: 0 0 6px var(--glow-soft);
+}
+.boot::-webkit-scrollbar, .term::-webkit-scrollbar { width: 8px; }
+.boot::-webkit-scrollbar-thumb, .term::-webkit-scrollbar-thumb {
+  background: var(--phos-dim); border-radius: 8px;
+}
+
+.boot { z-index: 20; color: var(--phos); }
+.term[hidden] { display: none; }
+
+.output { white-space: pre-wrap; word-break: break-word; }
+
+.line { display: block; }
+.line + .line { margin-top: 0; }
+
+/* ---- The live prompt line --------------------------------------------- */
+.promptline {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6ch;
+  margin-top: 0.35em;
+}
+.promptline[hidden] { display: none; }
+
+.ps1 { flex: none; font-weight: 600; }
+.ps1 .user { color: var(--phos-hi); }
+.ps1 .at   { color: var(--phos-dim); }
+.ps1 .host { color: var(--accent); }
+.ps1 .path { color: var(--phos-dim); }
+
+/* inputwrap: whitespace collapsed so caret sits ON the line */
+.inputwrap { white-space: pre; display: inline-flex; align-items: baseline; }
+.typed { color: var(--phos-hi); }
+.ghost { color: var(--phos-dim); opacity: 0.55; }
+.ghost.hint { opacity: 0.75; font-style: italic; animation: hintpulse 2s ease-in-out infinite; }
+@keyframes hintpulse { 50% { opacity: 0.35; } }
+
+.caret {
+  display: inline-block;
+  width: 0.62ch;
+  height: 1.05em;
+  transform: translateY(0.16em);
+  background: var(--phos);
+  box-shadow: 0 0 8px var(--glow);
+  animation: blink 1.05s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---- Rich output styling ---------------------------------------------- */
+.dim   { color: var(--phos-dim); }
+.hi    { color: var(--phos-hi); font-weight: 600; }
+.acc   { color: var(--accent); }
+.warnc { color: var(--warn); }
+.ok    { color: var(--phos); }
+.muted { color: var(--phos-dim); opacity: 0.85; }
+
+.output a, .boot a { color: var(--link); text-decoration: none; border-bottom: 1px dotted var(--link); }
+.output a:hover, .boot a:hover { background: var(--link); color: var(--bg); border-bottom-color: transparent; }
+
+.chip {
+  display: inline-block;
+  border: 1px solid var(--phos-dim);
+  border-radius: 4px;
+  padding: 0 0.6ch;
+  margin: 0 0.2ch 0.4ch 0;
+  color: var(--phos-hi);
+  white-space: nowrap;
+}
+
+.bar-track { display: inline-block; color: var(--phos-dim); }
+.bar-fill  { color: var(--phos); }
+
+.cmd { color: var(--accent); font-weight: 600; }
+
+.banner {
+  color: var(--phos-hi);
+  line-height: 1.02;
+  white-space: pre;
+  font-size: min(1.9vw, 12px);
+  letter-spacing: 0;
+  text-shadow:
+    -0.02em 0 rgba(255,60,80,0.55),
+     0.02em 0 rgba(60,220,255,0.55),
+     0 0 10px var(--glow-soft);
+  overflow-x: auto;
+}
+
+.card {
+  border: 1px solid var(--phos-dim);
+  border-radius: 6px;
+  padding: 0.4em 0.9em 0.7em;
+  margin: 0.3em 0 0.6em;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* neofetch two-column layout */
+.nf { display: flex; gap: 2.2ch; flex-wrap: wrap; align-items: flex-start; }
+.nf-art { color: var(--phos); white-space: pre; font-size: min(1.75vw, 11px); line-height: 1.15; }
+.nf-info { min-width: 20ch; }
+.nf-info b { color: var(--accent); }
+
+/* ---- Status HUD -------------------------------------------------------- */
+.hud {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 30;
+  display: flex;
+  gap: 1.6ch;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.35em clamp(14px, 2.6vmin, 30px);
+  font-size: 0.82em;
+  color: var(--phos-dim);
+  background: linear-gradient(to top, rgba(3,6,4,0.92), rgba(3,6,4,0));
+  text-shadow: none;
+  pointer-events: none;
+}
+.hud-cell { display: inline-flex; align-items: center; gap: 0.6ch; white-space: nowrap; }
+.hud .dot {
+  width: 0.7ch; height: 0.7ch; border-radius: 50%;
+  background: var(--phos); box-shadow: 0 0 6px var(--glow);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.35; } }
+
+/* ---- Bezel foot -------------------------------------------------------- */
+.bezel-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55em 0.4em 0.1em;
+  color: #4a4d4a;
+  font-size: 0.8em;
+  letter-spacing: 0.18em;
+}
+.bezel-foot .brand b { color: var(--phos-dim); }
+.led {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--phos);
+  box-shadow: 0 0 10px var(--glow), 0 0 3px var(--phos);
+  animation: pulse 3.2s ease-in-out infinite;
+}
+
+/* On-screen but invisible so iOS/Android reliably raise the soft keyboard
+   when we call focus() inside a tap gesture. 16px prevents iOS auto-zoom. */
+#hidden-input {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1em;
+  opacity: 0;
+  border: 0;
+  padding: 0;
+  font-size: 16px;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  z-index: -1;
+}
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 640px) {
+  :root { --cell: 13px; }
+  .bezel { border-radius: 16px; padding: 10px; }
+  .banner { font-size: 2.35vw; }
+  .nf-art { font-size: 2.4vw; }
+  .hud { font-size: 0.76em; gap: 1.1ch; }
+  .hud-cell#hud-loc { display: none; }
+}
+
+@media (max-width: 400px) {
+  .banner { font-size: 3vw; }
+}
+
+/* ---- Motion & contrast honour the reader ------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .screen { animation: none; }
+  .screen::before { animation: none; }
+  .screen::after  { animation: none; }
+  .screen > .rollbar { animation: none; display: none; }
+  .caret { animation: none; }
+  .hud .dot, .led { animation: none; }
+  #rain { transition: none; }
+}
