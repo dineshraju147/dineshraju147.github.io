@@ -88,7 +88,7 @@
         <p class="hand hero-hi" data-in><span data-rough="underline2">hi, my name is</span></p>
 
         <div class="name-wrap">
-          <h1 class="name" id="name" data-rough="box" data-rough-color="#FF7A1A" data-rough-pad="22"><span class="sr-only">Dinesh Kattunga</span><span aria-hidden="true">DINESH</span></h1>
+          <h1 class="name" id="name" data-rough="box" data-rough-color="#FF7A1A" data-rough-pad="22"><span class="sr-only">Dinesh Kattunga</span><span class="name-word" aria-hidden="true">DINESH</span></h1>
           <span class="sticker sticker-mint s1" data-in aria-hidden="true">takes things apart</span>
           <span class="sticker sticker-sand s2" data-in aria-hidden="true">explains every model</span>
           <span class="note note-yellow n1" data-in>AI engineer<img class="note-arrow" src="assets/sketch/arrow-ne.svg" alt="" width="100" height="80"></span>
@@ -207,7 +207,7 @@
 
       <div class="folders">
         <article class="folder folder-ink" style="--i:0" aria-labelledby="f1">
-          <p class="folder-tab"><span aria-hidden="true">✦</span> Project 01</p>
+          <p class="folder-tab"><span aria-hidden="true">✦</span> <span class="tab-word">Project </span>01</p>
           <div class="folder-body">
             <div class="folder-text">
               <p class="folder-meta"><i class="dot" aria-hidden="true"></i>Now · at Alakai</p>
@@ -225,7 +225,7 @@
         </article>
 
         <article class="folder folder-blue" style="--i:1" aria-labelledby="f2">
-          <p class="folder-tab"><span aria-hidden="true">✦</span> Project 02</p>
+          <p class="folder-tab"><span aria-hidden="true">✦</span> <span class="tab-word">Project </span>02</p>
           <div class="folder-body">
             <div class="folder-text">
               <p class="folder-meta"><i class="dot" aria-hidden="true"></i>From scratch · PyTorch</p>
@@ -243,7 +243,7 @@
         </article>
 
         <article class="folder folder-green" style="--i:2" aria-labelledby="f3">
-          <p class="folder-tab"><span aria-hidden="true">✦</span> Project 03</p>
+          <p class="folder-tab"><span aria-hidden="true">✦</span> <span class="tab-word">Project </span>03</p>
           <div class="folder-body">
             <div class="folder-text">
               <p class="folder-meta"><i class="dot" aria-hidden="true"></i>Graduate research · GVSU</p>
@@ -261,7 +261,7 @@
         </article>
 
         <article class="folder folder-yellow" style="--i:3" aria-labelledby="f4">
-          <p class="folder-tab"><span aria-hidden="true">✦</span> Project 04</p>
+          <p class="folder-tab"><span aria-hidden="true">✦</span> <span class="tab-word">Project </span>04</p>
           <div class="folder-body">
             <div class="folder-text">
               <p class="folder-meta"><i class="dot" aria-hidden="true"></i>Business intelligence · Power BI</p>
@@ -296,27 +296,112 @@
     <section class="lab" id="lab" aria-labelledby="lab-title">
       <header class="sec-head">
         <p class="hand" data-reveal><span data-rough="underline2">try it!</span></p>
-        <h2 class="display" id="lab-title" data-reveal>Run the agent</h2>
-        <p class="note note-mint sec-note" data-reveal>The pattern I build at work: the agent plans, calls tools through MCP, checks what came back and answers. Every AWS service it touches lights up.</p>
+        <h2 class="display" id="lab-title" data-reveal>Playground</h2>
+        <p class="note note-mint sec-note" data-reveal>Three things to poke at: an agent running on AWS, a sales dashboard, and a credit-risk model you can tune.</p>
       </header>
 
-      <div class="lab-grid">
-        <div class="lab-asks" data-reveal>
-          <p class="mono-label" id="ask-label">Pick a question</p>
-          <div class="asks" role="radiogroup" aria-labelledby="ask-label">
-            <button type="button" role="radio" aria-checked="true" data-ask="deploys">Why did last week's deploys fail?</button>
-            <button type="button" role="radio" aria-checked="false" data-ask="churn">Which customers left after the price change?</button>
-            <button type="button" role="radio" aria-checked="false" data-ask="docs">Is our refund policy the same in the EU?</button>
+      <div class="lab-tabs" role="tablist" aria-label="Playground demos" data-reveal>
+        <button class="lab-tab lab-tab-agent" type="button" role="tab" id="tab-agent" aria-selected="true" aria-controls="panel-agent"><span aria-hidden="true">◆</span> <span class="t-long">Run the agent</span><span class="t-short">Agent</span></button>
+        <button class="lab-tab lab-tab-bi" type="button" role="tab" id="tab-bi" aria-selected="false" aria-controls="panel-bi" tabindex="-1"><span aria-hidden="true">▦</span> <span class="t-long">Sales dashboard</span><span class="t-short">Dashboard</span></button>
+        <button class="lab-tab lab-tab-ml" type="button" role="tab" id="tab-ml" aria-selected="false" aria-controls="panel-ml" tabindex="-1"><span aria-hidden="true">◉</span> <span class="t-long">Credit-risk model</span><span class="t-short">ML model</span></button>
+      </div>
+
+      <div class="lab-panel lab-panel-agent" id="panel-agent" role="tabpanel" aria-labelledby="tab-agent">
+        <div class="agent">
+          <form class="ask" id="ask-form" autocomplete="off">
+            <label class="mono-label" for="ask-input">Ask the agent anything</label>
+            <div class="ask-row">
+              <input id="ask-input" name="q" type="text" maxlength="120" placeholder="Why did last week's deploys fail?">
+              <button class="btn btn-run" type="submit" id="agent-run"><span class="btn-ico" aria-hidden="true">▶</span><span class="btn-label">Run</span></button>
+            </div>
+            <p class="ask-chips"><span>Or try:</span>
+              <button type="button" data-q="Why did last week's deploys fail?">failed deploys</button>
+              <button type="button" data-q="Which customers left after the price change?">customer churn</button>
+              <button type="button" data-q="Is our refund policy the same in the EU?">refund policy</button>
+              <button type="button" data-q="What's the weather in Grand Rapids?">something it can't do</button>
+            </p>
+          </form>
+
+          <fieldset class="chaos">
+            <legend class="mono-label">Make it harder</legend>
+            <label class="switch"><input type="checkbox" id="chaos-timeout"><span class="switch-ui" aria-hidden="true"></span><span>A tool times out</span></label>
+            <label class="switch"><input type="checkbox" id="chaos-inject"><span class="switch-ui" aria-hidden="true"></span><span>Hide a prompt injection in the data</span></label>
+            <label class="switch"><input type="checkbox" id="agent-step"><span class="switch-ui" aria-hidden="true"></span><span>Let me step through it</span></label>
+          </fieldset>
+
+          <div class="agent-board">
+            <svg id="arch" role="group" aria-label="Architecture: a request goes through API Gateway to Lambda, then to an agent on Bedrock AgentCore, which uses Claude on Bedrock and an MCP server on ECS reading RDS and S3, with traces in CloudWatch. Select a box to learn what it does."></svg>
+            <p class="meters">
+              <span><b id="m-time">0.0 s</b> elapsed</span>
+              <span><b id="m-tools">0</b> tool calls</span>
+              <span><b id="m-tokens">0</b> tokens</span>
+              <span><b id="m-cost">$0.000</b> cost</span>
+            </p>
           </div>
-          <button class="btn btn-run" type="button" id="agent-run"><span class="btn-ico" aria-hidden="true">▶</span><span class="btn-label">Run the agent</span></button>
-          <p class="fine">A replay with sample data. No model is called from this page.</p>
-        </div>
 
-        <div class="lab-board" data-reveal>
-          <svg id="arch" role="img" aria-label="Architecture: a request goes through API Gateway to Lambda, then to an agent on Bedrock AgentCore, which uses Claude on Bedrock and an MCP server on ECS reading RDS and S3, with traces in CloudWatch."></svg>
-        </div>
+          <div class="agent-say" id="agent-say">
+            <p class="say-title hand" id="say-title">what's happening</p>
+            <p class="say-text" id="say-text" aria-live="polite">Type a question or pick one, then press Run. Tap any box in the diagram to see what that AWS service does.</p>
+            <div class="say-actions" id="say-actions" hidden></div>
+          </div>
 
-        <pre class="trace" id="trace" tabindex="0" aria-live="polite" aria-label="Agent trace" data-reveal><code></code></pre>
+          <pre class="trace" id="trace" tabindex="0" aria-label="Agent trace"><code></code></pre>
+        </div>
+        <p class="fine lab-fine">A replay with sample data: no model is called from this page. Your question is matched by keywords to one of the scripted runs.</p>
+      </div>
+
+      <div class="lab-panel lab-panel-bi" id="panel-bi" role="tabpanel" aria-labelledby="tab-bi" hidden>
+        <div class="dash" id="bi">
+          <header class="dash-head">
+            <h3 class="dash-title">AtliQ Hardware · Sales 360</h3>
+            <p class="fine">Sample data for a fictional hardware maker, in the shape of my Business 360 Power BI board. Every number below answers to the filters, and a click on a market filters the rest.</p>
+          </header>
+          <div class="dash-filters">
+            <div class="seg" role="radiogroup" aria-label="Fiscal year" id="bi-fy"></div>
+            <label class="sel"><span class="mono-label">Region</span>
+              <select id="bi-region"><option value="all">All regions</option><option value="APAC">Asia Pacific</option><option value="EU">Europe</option><option value="NA">North America</option><option value="LATAM">Latin America</option></select>
+            </label>
+            <label class="sel"><span class="mono-label">Channel</span>
+              <select id="bi-channel"><option value="all">All channels</option><option value="Retailer">Retailer</option><option value="Direct">Direct</option><option value="Distributor">Distributor</option></select>
+            </label>
+            <button type="button" class="chip-clear" id="bi-clear" hidden>Market: <b></b> <span aria-hidden="true">×</span><span class="sr-only">, clear</span></button>
+          </div>
+          <div class="kpis" id="bi-kpis"></div>
+          <div class="dash-grid dash-grid-bi">
+            <figure class="viz viz-markets"><figcaption><b>Net sales by market</b><span>$M · click a bar to filter</span></figcaption><div class="viz-plot" id="bi-markets"></div></figure>
+            <figure class="viz viz-trend"><figcaption><b>Net sales by month</b><span class="legend"><span>$M</span><span><i class="key key-line" style="--k:#2a78d6"></i>this year</span><span><i class="key key-line" style="--k:#a8a59c"></i>last year</span></span></figcaption><div class="viz-plot" id="bi-trend"></div></figure>
+            <figure class="viz viz-seg"><figcaption><b>Gross margin by segment</b><span>% of net sales</span></figcaption><div class="viz-plot" id="bi-segments"></div></figure>
+            <figure class="viz viz-prod"><figcaption><b>Top products</b><span>by net sales</span></figcaption><div id="bi-products"></div></figure>
+          </div>
+          <p class="insight"><span class="hand">so what?</span> <span id="bi-insight"></span></p>
+        </div>
+      </div>
+
+      <div class="lab-panel lab-panel-ml" id="panel-ml" role="tabpanel" aria-labelledby="tab-ml" hidden>
+        <div class="dash" id="ml">
+          <header class="dash-head">
+            <h3 class="dash-title">Credit-risk model · where to draw the line</h3>
+            <p class="fine">2,000 sample loan applicants, generated and scored in your browser by a model shaped like my credit-risk project (XGBoost + Optuna, AUC 0.98). Every threshold is a trade-off: move it and watch.</p>
+          </header>
+          <div class="dash-filters">
+            <label class="range"><span class="mono-label">Reject when risk ≥ <output id="ml-t-out" for="ml-t">0.50</output></span>
+              <input type="range" id="ml-t" min="0.02" max="0.98" step="0.01" value="0.5">
+            </label>
+            <button type="button" class="chip" data-best="f1" aria-pressed="false">Best balance (F1)</button>
+            <button type="button" class="chip" data-best="cost" aria-pressed="false">Cheapest, if a missed default costs 5×</button>
+          </div>
+          <div class="kpis" id="ml-kpis"></div>
+          <div class="dash-grid dash-grid-ml">
+            <figure class="viz viz-hist"><figcaption><b>Risk scores: who repaid, who defaulted</b><span class="legend"><span><i class="key" style="--k:#2a78d6"></i>repaid</span><span><i class="key" style="--k:#eb6834"></i>defaulted</span><span>share of each group · drag the line</span></span></figcaption><div class="viz-plot" id="ml-hist"></div></figure>
+            <figure class="viz viz-roc"><figcaption><b>ROC curve</b><span id="ml-auc">AUC</span></figcaption><div class="viz-plot" id="ml-roc"></div></figure>
+            <figure class="viz viz-cm"><figcaption><b>What happens at this threshold</b><span>out of 2,000 applicants</span></figcaption><div class="cm" id="ml-cm"></div></figure>
+            <figure class="viz viz-shap"><figcaption><b>Why this decision?</b><span>each feature's push on the risk, like SHAP values for this model</span></figcaption>
+              <div class="app" id="ml-app"></div>
+              <div class="viz-plot" id="ml-shap"></div>
+              <button type="button" class="chip" id="ml-next">Explain another applicant →</button>
+            </figure>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -449,7 +534,10 @@
   </footer>
 
   <script src="assets/vendor/rough.min.js" defer></script>
+  <script src="assets/js/viz.js" defer></script>
   <script src="assets/js/agent.js" defer></script>
+  <script src="assets/js/bi.js" defer></script>
+  <script src="assets/js/ml.js" defer></script>
   <script src="assets/js/notebook.js" defer></script>
 </body>
 </html>

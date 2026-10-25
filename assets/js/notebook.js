@@ -14,10 +14,78 @@
   // hidden states only exist from here on, so a failed script never hides content
   html.classList.add("motion");
 
-  /* ---- arrival: the name first, then the stickers slap on, then the line ---- */
-  const arrival = [".hero-hi", ".s1", ".s2", ".n1", ".n2", ".status", ".lede", ".hero-cta"];
-  arrival.forEach((s, i) => { const el = $(s); if (el) el.style.setProperty("--d", 260 + i * 110 + "ms"); });
-  requestAnimationFrame(() => requestAnimationFrame(() => html.classList.add("is-loaded")));
+  /* ---- arrival: the box draws, the letters drop in, then the stickers slap on ---- */
+  const order = [[".hero-hi", 120], [".s1", 300], [".s2", 420], [".n1", 1150], [".n2", 1260], [".status", 900], [".lede", 1000], [".hero-cta", 1120]];
+  order.forEach(([s, d]) => { const el = $(s); if (el) el.style.setProperty("--d", d + "ms"); });
+  const word = $(".name-word");
+  if (word) {
+    word.replaceChildren(...[...word.textContent].map((c, i) => {
+      const ch = document.createElement("span");
+      ch.className = "name-ch";
+      ch.textContent = c;
+      ch.style.setProperty("--i", i);
+      ch.style.setProperty("--rot", (i % 2 ? 1 : -1) * (10 + ((i * 7) % 12)) + "deg");
+      return ch;
+    }));
+  }
+  let arrived = false;
+  const onArrive = [];
+  function arrive() {
+    if (arrived) return;
+    arrived = true;
+    html.classList.add("is-loaded");
+    onArrive.splice(0).forEach((f) => f());
+  }
+
+  /* ---- the intro: a label types hello, once per visit; any key, click or scroll skips it ---- */
+  function intro() {
+    let seen = false;
+    try { seen = sessionStorage.getItem("nb-intro") === "1"; sessionStorage.setItem("nb-intro", "1"); } catch (e) { seen = true; }
+    if (seen || reduced() || window.scrollY > 40) return false;
+    const splash = document.createElement("div");
+    splash.className = "splash";
+    splash.setAttribute("aria-hidden", "true");
+    const label = document.createElement("p");
+    label.className = "splash-label";
+    const skip = document.createElement("p");
+    skip.className = "splash-skip";
+    skip.textContent = "click to skip";
+    splash.append(label, skip);
+    document.body.appendChild(splash);
+    html.style.overflow = "hidden";
+    const timers = [];
+    const later = (f, ms) => timers.push(setTimeout(f, ms));
+    const type = (text, at) => {
+      [...text].forEach((c, i) => later(() => {
+        const ch = document.createElement("span");
+        ch.className = "splash-ch";
+        ch.textContent = c;
+        label.lastChild && label.lastChild.classList && label.lastChild.classList.contains("splash-caret") ? label.insertBefore(ch, label.lastChild) : label.appendChild(ch);
+      }, at + i * 48));
+      return at + text.length * 48;
+    };
+    const caret = () => { const c = document.createElement("span"); c.className = "splash-caret"; return c; };
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      timers.forEach(clearTimeout);
+      splash.classList.add("is-out");
+      html.style.overflow = "";
+      arrive();
+      setTimeout(() => splash.remove(), 600);
+      ["keydown", "wheel", "touchstart"].forEach((t) => window.removeEventListener(t, finish));
+    };
+    label.appendChild(caret());
+    let t = type("Hi there!", 260);
+    later(() => { label.replaceChildren(caret()); label.classList.remove("is-swap"); void label.offsetWidth; label.classList.add("is-swap"); }, t + 520);
+    t = type("You found my notebook.", t + 640);
+    later(finish, t + 650);
+    splash.addEventListener("click", finish);
+    ["keydown", "wheel", "touchstart"].forEach((ev) => window.addEventListener(ev, finish, { passive: true }));
+    return true;
+  }
+  if (!intro()) requestAnimationFrame(() => requestAnimationFrame(arrive));
 
   /* ---- hand-drawn marks ---- */
   const marks = new Map(); // host -> { svg, w, h, seed }
@@ -86,8 +154,9 @@
       if (!svg) return;
       if (!first || !drawIO) { svg.classList.add("is-drawn"); return; }
       if (host.closest(".hero")) {
-        svg.style.setProperty("--d", host.classList.contains("name") ? "350ms" : "200ms");
-        setTimeout(() => svg.classList.add("is-drawn"), 30);
+        svg.style.setProperty("--d", host.classList.contains("name") ? "0ms" : "350ms");
+        const draw = () => setTimeout(() => svg.classList.add("is-drawn"), 30);
+        if (arrived) draw(); else onArrive.push(draw);
       } else drawIO.observe(host);
     });
   }
@@ -170,9 +239,8 @@
   function checkStack() {
     if (!folders) return;
     const avail = innerHeight - $("#bar").offsetHeight - 24;
-    const wide = window.matchMedia("(min-width: 901px)").matches;
     folders.classList.remove("is-stack");
-    const fits = wide && $$(".folder", folders).every((f) => f.offsetHeight <= avail);
+    const fits = $$(".folder", folders).every((f) => f.offsetHeight <= avail);
     folders.classList.toggle("is-stack", fits);
   }
   checkStack();
@@ -232,8 +300,31 @@
     });
   });
 
-  /* ---- the agent replay ---- */
+  /* ---- the playground: three demos behind tabs; a dashboard is built the first time it is shown ---- */
   if (window.Agent) { try { window.Agent.init(); } catch (e) { console.error(e); } }
+  const labTabs = $$(".lab-tab");
+  const labInit = { bi: () => window.BI && window.BI.init(), ml: () => window.ML && window.ML.init() };
+  function showTab(tab, focus) {
+    labTabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      $("#" + t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+    const key = tab.id.replace("tab-", "");
+    try { if (labInit[key]) labInit[key](); } catch (e) { console.error(e); }
+    document.dispatchEvent(new CustomEvent("lab:shown", { detail: key }));
+  }
+  labTabs.forEach((t, i) => {
+    t.addEventListener("click", () => showTab(t));
+    t.addEventListener("keydown", (e) => {
+      const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      showTab(labTabs[(i + d + labTabs.length) % labTabs.length], true);
+    });
+  });
 
   /* ---- marks and the route wait for the fonts, so they wrap the final text ---- */
   const start = () => {
