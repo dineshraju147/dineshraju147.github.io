@@ -28,6 +28,30 @@
       return ch;
     }));
   }
+  // headings that rise in letter by letter: screen readers keep the plain text
+  $$("[data-letters]").forEach((h) => {
+    const text = h.textContent.trim();
+    const sr = document.createElement("span");
+    sr.className = "sr-only";
+    sr.textContent = text;
+    let i = 0;
+    const words = text.split(" ").map((w) => {
+      const word = document.createElement("span");
+      word.className = "lt-word";
+      word.setAttribute("aria-hidden", "true");
+      word.append(...[...w].map((c) => {
+        const ch = document.createElement("span");
+        ch.className = "lt-ch";
+        ch.textContent = c;
+        ch.style.setProperty("--i", i++);
+        return ch;
+      }));
+      return word;
+    });
+    h.replaceChildren(sr, ...words.flatMap((w, k) => (k ? [" ", w] : [w])));
+  });
+  $$(".talk .contact-sub").forEach((el) => el.style.setProperty("--d", "560ms"));
+
   let arrived = false;
   const onArrive = [];
   function arrive() {
@@ -165,7 +189,7 @@
   $$("[data-reveal-list]").forEach((list) => [...list.children].forEach((c, i) => c.style.setProperty("--i", i)));
   $$(".sec-head").forEach((h) => $$("[data-reveal]", h).forEach((el, i) => el.style.setProperty("--d", i * 90 + "ms")));
   $$(".about-text [data-reveal]").forEach((el, i) => el.style.setProperty("--d", 80 + i * 110 + "ms"));
-  const revealTargets = $$("[data-reveal], [data-reveal-list], [data-drop], [data-card], .plane, .folder-pic");
+  const revealTargets = $$("[data-reveal], [data-reveal-list], [data-drop], [data-card], [data-pop], [data-letters], .folder-pic");
   if ("IntersectionObserver" in window) {
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -275,6 +299,27 @@
       if (!raf) raf = requestAnimationFrame(() => { raf = 0; if (reduced()) return; doodles.style.setProperty("--mx", mx.toFixed(3)); doodles.style.setProperty("--my", my.toFixed(3)); });
     });
   }
+
+  /* ---- the screen: an inverting square that follows the pointer over the name and "Let's talk" ---- */
+  const lensOK = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 901px)");
+  $$("[data-lens]").forEach((zone) => {
+    const lens = $(".lens", zone);
+    if (!lens) return;
+    let raf = 0, x = 0, y = 0;
+    const place = () => {
+      raf = 0;
+      const r = zone.getBoundingClientRect();
+      lens.style.left = (((x - r.left) / r.width) * 100).toFixed(2) + "%";
+      lens.style.top = (((y - r.top) / r.height) * 100).toFixed(2) + "%";
+    };
+    // it opens where the pointer comes in, then follows it
+    zone.addEventListener("pointerenter", (e) => { if (lensOK.matches) { x = e.clientX; y = e.clientY; place(); } });
+    zone.addEventListener("pointermove", (e) => {
+      if (!lensOK.matches) return;
+      x = e.clientX; y = e.clientY;
+      if (!raf) raf = requestAnimationFrame(place);
+    });
+  });
 
   /* ---- local time in Grand Rapids ---- */
   const clock = $("#clock");

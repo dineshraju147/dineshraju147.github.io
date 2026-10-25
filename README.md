@@ -14,14 +14,14 @@ in the margins. It reads top to bottom:
 | Section | What it shows |
 |---|---|
 | Intro | A label types hello (once per visit, skippable), then the box draws and the letters of the name drop in |
-| Hero | The name, what he does now (AI agents on AWS), email and résumé |
+| Hero | The name, what he does now (AI agents on AWS), email and résumé. On desktop, a small black screen follows the pointer over the name and inverts whatever it passes over |
 | About | The short version, a portrait, and the six areas he works in |
 | How I got here | Five index cards along a route that draws itself as you scroll: the screen, the data, the models, attention, agents on AWS |
 | Selected work | Four project folders that stack as you scroll, then a shelf of seven more projects |
 | Playground | Three tabs. **Run the agent:** ask anything, make a tool time out or hide a prompt injection, approve or decline the agent's action, and watch each AWS service light up. **Sales dashboard:** a Business 360-style Power BI board with filters, cross-filtering and a trend crosshair. **Credit-risk model:** move the decision threshold and read the trade-off on a histogram, ROC curve and confusion matrix, then see why one applicant was approved or rejected. All sample data, generated in the browser |
 | Experience | A logbook of roles, education, and credentials as stamps |
 | Rules I work by | Five pinned notes |
-| Let's talk | Email, with a copy button, LinkedIn, GitHub, Medium and the résumé |
+| Let's talk | A blinking smiley pops up, the heading rises letter by letter, and the same screen follows the pointer; then email, with a copy button, LinkedIn, GitHub, Medium and the résumé |
 
 ## How it's built
 
@@ -30,7 +30,7 @@ No framework and no build step. Static files served by GitHub Pages.
 ```
 index.html              the page, with JSON-LD Person data and Open Graph tags
 assets/css/notebook.css tokens, paper, stickers, tape, sections, motion and breakpoints
-assets/js/notebook.js   intro, reveals, hand-drawn marks, the story route, the folder stack, tabs, the bar
+assets/js/notebook.js   intro, reveals, hand-drawn marks, the story route, the folder stack, the inverting screen, tabs, the bar
 assets/js/agent.js      the playable agent replay and its architecture sketch
 assets/js/bi.js         the sales dashboard (sample AtliQ data)
 assets/js/ml.js         the credit-risk threshold explorer and per-applicant explanation
