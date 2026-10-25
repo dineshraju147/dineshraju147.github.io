@@ -1,38 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>dinesh@brain — interactive terminal</title>
-  <meta name="description" content="An interactive CRT terminal portfolio of Dinesh Kumar Raju Kattunga — Cloud AI Engineer at Alakai. Type a command and talk to my second brain: MCP, AWS, and machine learning." />
-  <meta name="author" content="Dinesh Kumar Raju Kattunga" />
-  <meta name="keywords" content="Dinesh Kumar Raju Kattunga, Cloud AI Engineer, Model Context Protocol, MCP, AWS, machine learning engineer, PyTorch, portfolio, Grand Rapids" />
-  <meta name="theme-color" content="#050806" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dinesh Kattunga, AI engineer shipping on AWS</title>
+  <meta name="description" content="Dinesh Kumar Raju Kattunga is a Cloud AI Engineer in Grand Rapids, Michigan who builds AI agents and machine-learning systems and deploys them on AWS: Bedrock, AgentCore, Lambda, ECS. Before agents: models, data and interfaces.">
+  <meta name="author" content="Dinesh Kumar Raju Kattunga">
+  <meta name="theme-color" content="#111311">
+  <link rel="canonical" href="https://dineshraju147.github.io/">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="dinesh@brain — interactive terminal" />
-  <meta property="og:description" content="Type a command and talk to my second brain. Cloud AI Engineer · MCP · AWS · ML." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dineshraju147.github.io/" />
-  <meta property="og:site_name" content="dinesh@brain" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="dinesh@brain — interactive terminal" />
-  <meta name="twitter:description" content="Type a command and talk to my second brain. Cloud AI Engineer · MCP · AWS · ML." />
+  <meta property="og:title" content="Dinesh Kattunga, AI engineer shipping on AWS">
+  <meta property="og:description" content="AI agents, machine learning and the AWS that runs them. A portfolio told one layer of the stack at a time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dineshraju147.github.io/">
+  <meta property="og:image" content="https://dineshraju147.github.io/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Structured data: help search engines introduce me -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Dinesh Kumar Raju Kattunga",
-    "alternateName": "Dinesh Raju",
+    "alternateName": "Dinesh Kattunga",
     "jobTitle": "Cloud AI Engineer",
     "worksFor": { "@type": "Organization", "name": "Alakai" },
     "url": "https://dineshraju147.github.io/",
-    "email": "kattungadineshraju@gmail.com",
+    "email": "mailto:kattungadineshraju@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Grand Rapids", "addressRegion": "MI", "addressCountry": "US" },
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grand Valley State University" },
-    "knowsAbout": ["Model Context Protocol", "AWS", "Machine Learning", "PyTorch", "Large Language Models", "Data Engineering", "Explainable AI"],
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Grand Valley State University" },
+      { "@type": "CollegeOrUniversity", "name": "Sri Venkateswara University" }
+    ],
+    "knowsAbout": ["AWS", "Amazon Bedrock", "AgentCore", "AI agents", "Model Context Protocol", "LangGraph", "Claude Agent SDK", "Machine learning", "PyTorch", "Transformers", "Power BI", "SQL", "Explainable AI"],
     "sameAs": [
       "https://www.linkedin.com/in/dineshkumarraju0223/",
       "https://github.com/dineshraju147",
@@ -41,71 +40,462 @@
   }
   </script>
 
-  <!-- Inline SVG favicon: a phosphor prompt block -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050806'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='16' fill='%2360ffb0'%3E%3E_%3C/text%3E%3C/svg%3E" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111311'/%3E%3Crect x='6' y='6' width='20' height='4' fill='%232B4BEA'/%3E%3Crect x='6' y='10' width='20' height='4' fill='%23F2C811'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%232F5D3A'/%3E%3Crect x='6' y='18' width='20' height='4' fill='%23E9E8E3'/%3E%3Crect x='6' y='22' width='20' height='4' fill='%23FF9900'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fonts/albert-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/gen/sky.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-  <!-- Full-bleed matrix easter-egg canvas -->
-  <canvas id="rain" aria-hidden="true"></canvas>
+  <a class="skip" href="#story">Skip to the story</a>
 
-  <!-- The CRT tube -->
-  <main id="crt" class="crt" role="application" aria-label="Interactive terminal">
-    <div class="bezel">
-      <div class="screen" id="screen">
-        <div class="rollbar" aria-hidden="true"></div>
-
-        <!-- Boot overlay -->
-        <section id="boot" class="boot" aria-hidden="true"></section>
-
-        <!-- Terminal output + live prompt -->
-        <section id="term" class="term" hidden>
-          <div id="output" class="output" aria-live="polite"></div>
-
-          <div id="promptline" class="promptline" hidden>
-            <span class="ps1"><span class="user">dinesh</span><span class="at">@</span><span class="host">brain</span><span class="path">:~$</span></span>
-            <span class="inputwrap"><span id="typed" class="typed"></span><span id="caret" class="caret"></span><span id="ghost" class="ghost"></span></span>
-          </div>
-        </section>
-
-        <!-- Live status HUD (lower third) -->
-        <footer id="hud" class="hud" aria-hidden="true">
-          <span class="hud-cell"><span class="dot"></span> ONLINE</span>
-          <span class="hud-cell" id="hud-loc">Grand Rapids, MI</span>
-          <span class="hud-cell" id="hud-mem">mem 0.00%</span>
-          <span class="hud-cell" id="hud-clock">--:--:--</span>
-        </footer>
-
-      </div>
-      <!-- Bezel hardware detail -->
-      <div class="bezel-foot">
-        <span class="brand">DINESH-OS <b>mk.4</b></span>
-        <span class="led" id="led" title="power"></span>
-      </div>
+  <!-- Fixed bar: appears after the hero and takes the colour of the chapter beneath it -->
+  <header class="bar" id="bar" data-field="ink">
+    <a class="bar-mark" href="#top">Dinesh Kattunga</a>
+    <nav class="bar-nav" aria-label="Sections">
+      <a href="#story">Story</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="bar-end">
+      <a class="bar-link" href="https://drive.google.com/file/d/1onQ4SWcswgyV61R8-dHIEMPYjuhJVk3d/view" target="_blank" rel="noopener">Résumé</a>
+      <a class="btn btn-accent btn-small" href="mailto:kattungadineshraju@gmail.com?subject=Hello%20Dinesh">Email me</a>
     </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================== HERO ============================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-view">
+        <div class="hero-media" aria-hidden="true">
+          <img class="hero-img" src="assets/img/gen/sky.webp" alt="" width="2752" height="1536" fetchpriority="high">
+          <video class="hero-video" muted loop playsinline preload="none" poster="assets/img/gen/sky.webp" data-src="assets/img/gen/sky.mp4"></video>
+        </div>
+        <div class="hero-top">
+          <span class="hero-mark">Dinesh Kattunga</span>
+          <nav class="hero-links" aria-label="Profiles">
+            <a href="https://drive.google.com/file/d/1onQ4SWcswgyV61R8-dHIEMPYjuhJVk3d/view" target="_blank" rel="noopener">Résumé</a>
+            <a href="https://www.linkedin.com/in/dineshkumarraju0223/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/dineshraju147" target="_blank" rel="noopener">GitHub</a>
+          </nav>
+        </div>
+        <h1 class="hero-title display" id="hero-title">
+          <span class="line"><span data-line>AI engineer,</span></span>
+          <span class="line"><span data-line>shipping on AWS</span></span>
+        </h1>
+        <div class="hero-foot">
+          <p class="hero-sub" data-rise>I’m Dinesh Kattunga, Cloud AI Engineer at Alakai in Grand Rapids. I build AI agents and machine-learning systems, then deploy them on AWS so they keep working after the demo.</p>
+          <a class="btn btn-accent hero-cta" data-rise href="mailto:kattungadineshraju@gmail.com?subject=Hello%20Dinesh">Email me</a>
+        </div>
+      </div>
+
+      <nav class="swatches" aria-label="Chapters">
+        <a class="swatch" href="#interface" data-field="interface" style="--i:0"><span>Interface</span><span class="swatch-year">2022</span></a>
+        <a class="swatch" href="#data" data-field="data" style="--i:1"><span>Data</span><span class="swatch-year">2023</span></a>
+        <a class="swatch" href="#models" data-field="models" style="--i:2"><span>Models</span><span class="swatch-year">2024</span></a>
+        <a class="swatch" href="#attention" data-field="attention" style="--i:3"><span>Attention</span><span class="swatch-year">2025</span></a>
+        <a class="swatch" href="#agents" data-field="agents" style="--i:4"><span>Agents on AWS</span><span class="swatch-year">Now</span></a>
+      </nav>
+    </section>
+
+    <!-- ============================== THE STACK (scroll scene) ============================== -->
+    <section class="scene stack" id="story" data-field="ink" aria-labelledby="stack-title">
+      <div class="scene-stage stack-stage">
+        <div class="stack-copy">
+          <h2 class="head stack-title" id="stack-title">Taken apart, layer by layer</h2>
+          <div class="stack-beats">
+            <p class="stack-beat lead" data-beat="0">I trained as a mechanical engineer. You understand a machine by drawing its exploded view.</p>
+            <p class="stack-beat lead" data-beat="1">So here is mine: every layer of an AI product, in the order I learned it, from the screen down to the cloud.</p>
+          </div>
+          <ol class="stack-legend" aria-label="The layers, top to bottom">
+            <li data-layer="0"><a href="#interface"><span class="chip" style="--c:var(--c-interface)"></span>Interface<span class="yr">2022</span></a></li>
+            <li data-layer="1"><a href="#data"><span class="chip" style="--c:var(--c-data)"></span>Data<span class="yr">2023</span></a></li>
+            <li data-layer="2"><a href="#models"><span class="chip" style="--c:var(--c-models)"></span>Models<span class="yr">2024</span></a></li>
+            <li data-layer="3"><a href="#attention"><span class="chip" style="--c:var(--c-attention)"></span>Attention<span class="yr">2025</span></a></li>
+            <li data-layer="4"><a href="#agents"><span class="chip" style="--c:var(--accent)"></span>Agents<span class="yr">2025</span></a></li>
+            <li data-layer="5"><a href="#agents"><span class="chip" style="--c:var(--c-cloud-edge)"></span>AWS cloud<span class="yr">Now</span></a></li>
+          </ol>
+        </div>
+        <figure class="stack-figure">
+          <div class="stack-art" id="stack-art" role="img" aria-label="An exploded view of a machined block in six layers: interface in blue, data in yellow, models in green, attention in paper white, agents in orange and an AWS cloud base in navy." data-frames="66" data-path="assets/seq/stack/" data-w="660" data-h="900">
+            <img src="assets/img/gen/stack-exploded.webp" alt="" width="660" height="900" loading="lazy">
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================== CHAPTER 1: INTERFACE ============================== -->
+    <section class="chapter" id="interface" data-field="interface" aria-labelledby="interface-title">
+      <div class="ch-head">
+        <h2 class="display" id="interface-title"><span class="line"><span data-line>Interface</span></span></h2>
+        <p class="ch-years">2022 – 2023</p>
+      </div>
+      <div class="ch-grid">
+        <div class="ch-text">
+          <p class="lead" data-rise>I started where people touch software: the screen.</p>
+          <p data-rise>At NxtWave’s CCBP 4.0 programme I learned to build the web by hand: semantic HTML, CSS layout, responsive design, JavaScript and React. I learned to care whether a button feels right under a thumb, and I still design the screens my agents and dashboards live in.</p>
+          <ul class="facts" data-rise-list>
+            <li><b>CCBP 4.0 Fellow</b> NxtWave, April 2022 – August 2023</li>
+            <li><b>JavaScript Essentials</b> <a href="https://certificates.ccbp.in/intensive/javascript-essentials?id=MYRZKCDAIH" target="_blank" rel="noopener">certified, December 2022</a></li>
+            <li><b>This page</b> plain HTML, CSS and JavaScript; keyboard and reduced-motion friendly</li>
+          </ul>
+        </div>
+        <figure class="ch-figure" data-open>
+          <img src="assets/img/gen/interface.webp" alt="A pencil wireframe of a web page on tracing paper, with a pencil and an eraser, on a cobalt blue ground" width="1856" height="2304" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="proof proof-interface">
+        <div class="proof-text">
+          <h3 class="sub">Design is a layer too</h3>
+          <p>Same markup, two states. Flip it: the HTML doesn’t change, only the decisions do.</p>
+          <div class="toggle" role="radiogroup" aria-label="Styling">
+            <button type="button" role="radio" aria-checked="false" data-skin="raw">Unstyled</button>
+            <button type="button" role="radio" aria-checked="true" data-skin="designed">Designed</button>
+          </div>
+        </div>
+        <div class="ui-frame" data-ui id="skin-demo" data-skin="designed">
+          <article class="runcard">
+            <header class="runcard-head">
+              <h4>Weekly deploy report</h4>
+              <p class="runcard-meta">Agent run · finished in 41 s · 6 tool calls</p>
+            </header>
+            <ul class="runcard-list">
+              <li><span>Deployments</span><strong>128</strong></li>
+              <li><span>Failed</span><strong>3</strong></li>
+              <li><span>Rolled back</span><strong>1</strong></li>
+            </ul>
+            <p class="runcard-note">Two failures share a root cause: an expired secret in the staging pipeline. <a href="#agents">See the trace</a></p>
+            <div class="runcard-actions">
+              <button type="button">Open in Slack</button>
+              <button type="button" class="primary">Approve fix</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CHAPTER 2: DATA ============================== -->
+    <section class="chapter chapter-flip" id="data" data-field="data" aria-labelledby="data-title">
+      <div class="ch-head">
+        <h2 class="display" id="data-title"><span class="line"><span data-line>Data</span></span></h2>
+        <p class="ch-years">2023 – 2024</p>
+      </div>
+      <div class="ch-grid">
+        <div class="ch-text">
+          <p class="lead" data-rise>Then I learned to make numbers answer business questions.</p>
+          <p data-rise>SQL first, then Power BI, DAX and data modelling. As a data analyst intern at AtliQ Technologies I mined more than 100,000 records with SQL and Python, built the dashboards people read every week, and automated the prep work that used to eat afternoons.</p>
+          <ul class="figures" data-rise-list>
+            <li><strong>100K+</strong><span>records analysed with SQL and Python at AtliQ</span></li>
+            <li><strong>+30%</strong><span>reporting efficiency from Power BI dashboards</span></li>
+            <li><strong>−25%</strong><span>manual processing time after automating the prep</span></li>
+          </ul>
+          <ul class="facts" data-rise-list>
+            <li><b>Microsoft PL-300</b> <a href="https://learn.microsoft.com/en-us/users/dineshkumarrajukattunga-1361/credentials/828ccc4fb1d6d598" target="_blank" rel="noopener">Power BI Data Analyst Associate, March 2025</a></li>
+            <li><b>HackerRank SQL</b> <a href="https://www.hackerrank.com/profile/Kattungadinesh11" target="_blank" rel="noopener">5 stars, 3,200+ points</a></li>
+          </ul>
+        </div>
+        <figure class="ch-figure" data-open>
+          <img src="assets/img/gen/data.webp" alt="A stack of vintage punched cards on a signal yellow ground" width="1856" height="2304" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="proof proof-data proof-full">
+        <div class="proof-text">
+          <h3 class="sub">A board, not a report</h3>
+          <p>The pattern behind my Business 360 dashboard: pick a year and a region and every figure answers at once.</p>
+          <p class="note">Sample figures for AtliQ Hardware, the fictional company in the Codebasics challenge.</p>
+        </div>
+        <div class="ui-frame board" data-ui id="board">
+          <div class="board-controls">
+            <div class="seg" role="radiogroup" aria-label="Fiscal year">
+              <button type="button" role="radio" aria-checked="false" data-fy="2022">FY 2022</button>
+              <button type="button" role="radio" aria-checked="true" data-fy="2023">FY 2023</button>
+            </div>
+            <label class="select">
+              <span>Region</span>
+              <select id="board-region">
+                <option value="all">All regions</option>
+                <option value="APAC">APAC</option>
+                <option value="EU">Europe</option>
+                <option value="NA">North America</option>
+                <option value="LATAM">Latin America</option>
+              </select>
+            </label>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><span>Net sales</span><strong id="kpi-sales">$0</strong><em id="kpi-sales-d"></em></div>
+            <div class="kpi"><span>Gross margin</span><strong id="kpi-gm">0%</strong><em id="kpi-gm-d"></em></div>
+            <div class="kpi"><span>Forecast accuracy</span><strong id="kpi-fa">0%</strong><em id="kpi-fa-d"></em></div>
+          </div>
+          <div class="board-charts">
+            <figure class="chart">
+              <figcaption>Net sales by market, $M</figcaption>
+              <svg id="board-bars" viewBox="0 0 320 180" role="img" aria-label="Net sales by market"></svg>
+            </figure>
+            <figure class="chart">
+              <figcaption>Monthly net sales, $M</figcaption>
+              <svg id="board-line" viewBox="0 0 320 180" role="img" aria-label="Monthly net sales trend"></svg>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CHAPTER 3: MODELS ============================== -->
+    <section class="chapter" id="models" data-field="models" aria-labelledby="models-title">
+      <div class="ch-head">
+        <h2 class="display" id="models-title"><span class="line"><span data-line>Models</span></span></h2>
+        <p class="ch-years">2024 – 2025</p>
+      </div>
+      <div class="ch-grid">
+        <div class="ch-text">
+          <p class="lead" data-rise>At Grand Valley I learned to build models that hold up and explain themselves.</p>
+          <p data-rise>My M.S. in Applied Computer Science turned into research on explainable AI for precision agriculture: forecasting soil moisture so farms water only what they need, and opening up CNN decisions with Grad-CAM++, SHAP and LIME so people can see why a model decided what it did.</p>
+          <ul class="figures" data-rise-list>
+            <li><strong>0.99</strong><span>R² on soil-moisture forecasts, Voting and Random Forest regressors</span></li>
+            <li><strong>0.98</strong><span>AUC of the credit-risk model, XGBoost tuned with Optuna</span></li>
+            <li><strong>97%</strong><span>accuracy predicting health-insurance premiums</span></li>
+          </ul>
+          <ul class="facts" data-rise-list>
+            <li><b>Research Assistant</b> Grand Valley State University, January – December 2025</li>
+            <li><b>Deep Learning Specialization</b> <a href="https://www.coursera.org/account/accomplishments/specialization/G0UZ56PJUA86" target="_blank" rel="noopener">DeepLearning.AI, April 2025</a></li>
+          </ul>
+        </div>
+        <figure class="ch-figure" data-open>
+          <img src="assets/img/gen/models.webp" alt="A soil-moisture probe in a clump of soil beside a seedling, on a deep green ground" width="1856" height="2304" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="proof proof-models proof-mirror">
+        <div class="proof-text">
+          <h3 class="sub">Train one, right here</h3>
+          <p>A small neural network learns to separate two classes of points, in your browser, with no library. Press train and watch the boundary bend.</p>
+          <div class="train-actions">
+            <button type="button" class="btn btn-ink" id="train-go">Train</button>
+            <button type="button" class="btn-text" id="train-new">New data</button>
+          </div>
+        </div>
+        <div class="ui-frame trainer" data-ui>
+          <canvas id="train-canvas" width="480" height="480" aria-label="Decision boundary of the network over the training points"></canvas>
+          <div class="trainer-side">
+            <dl class="trainer-stats">
+              <div><dt>Epoch</dt><dd id="train-epoch">0</dd></div>
+              <div><dt>Loss</dt><dd id="train-loss">0.693</dd></div>
+              <div><dt>Accuracy</dt><dd id="train-acc">50%</dd></div>
+            </dl>
+            <svg id="train-curve" viewBox="0 0 240 120" role="img" aria-label="Training loss over epochs"></svg>
+            <p class="trainer-arch">2 inputs → 16 tanh units → 1 sigmoid output · gradient descent</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CHAPTER 4: ATTENTION ============================== -->
+    <section class="chapter chapter-flip" id="attention" data-field="attention" aria-labelledby="attention-title">
+      <div class="ch-head">
+        <h2 class="display" id="attention-title"><span class="line"><span data-line>Attention</span></span></h2>
+        <p class="ch-years">2025</p>
+      </div>
+      <div class="ch-grid">
+        <div class="ch-text">
+          <p class="lead" data-rise>Then I wanted to know how a transformer really thinks, so I built one.</p>
+          <p data-rise>I wrote a decoder-only transformer from scratch in PyTorch: embeddings, causal self-attention, the training loop, every tensor by hand. Before it, a WaveNet-style character model. After it, the explainer I wished I’d had when I started.</p>
+          <ul class="facts" data-rise-list>
+            <li><b>Decoder-only Transformer</b> <a href="https://github.com/dineshraju147/Decoder_only_Transformer" target="_blank" rel="noopener">PyTorch, from scratch</a></li>
+            <li><b>make_more</b> <a href="https://github.com/dineshraju147/make_more" target="_blank" rel="noopener">character-level language model, WaveNet-inspired</a></li>
+            <li><b>Self-attention, explained</b> <a href="https://medium.com/@kattungadinesh147/from-loops-to-layers-understanding-and-implementing-self-attention-in-transformers-from-scratch-92bafc27f086" target="_blank" rel="noopener">From loops to layers, on Medium</a></li>
+          </ul>
+        </div>
+        <figure class="ch-figure" data-open>
+          <img src="assets/img/gen/attention.webp" alt="Antique lead type sorts in a row, three lifted out and standing upright, on a paper-grey ground" width="1856" height="2304" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="proof proof-attention">
+        <div class="proof-text">
+          <h3 class="sub">Watch a sentence attend</h3>
+          <p>Type a sentence. Each row shows where one token looks among the tokens before it: scaled dot-product attention with a causal mask, computed as you type.</p>
+          <p class="note">The weights are untrained, so it shows the mechanics, not the meaning.</p>
+          <label class="check"><input type="checkbox" id="attn-mask" checked> Causal mask</label>
+        </div>
+        <div class="ui-frame attn" data-ui>
+          <label class="attn-input">
+            <span>Sentence</span>
+            <input id="attn-text" type="text" maxlength="80" value="the agent called a tool because it needed fresh data" spellcheck="false" autocomplete="off">
+          </label>
+          <div class="attn-grid" id="attn-grid" aria-live="polite"></div>
+          <p class="attn-read" id="attn-read"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CHAPTER 5: AGENTS ON AWS ============================== -->
+    <section class="chapter" id="agents" data-field="agents" aria-labelledby="agents-title">
+      <div class="ch-head">
+        <h2 class="display" id="agents-title"><span class="line"><span data-line>Agents on AWS</span></span></h2>
+        <p class="ch-years">2025 – now</p>
+      </div>
+      <div class="ch-grid">
+        <div class="ch-text">
+          <p class="lead" data-rise>Now I build agents that do real work, and the cloud that keeps them running.</p>
+          <p data-rise>As a Cloud AI Engineer at Alakai I design MCP servers that connect language models to real data, securely, and the AWS architecture underneath them: Bedrock and AgentCore for the agents, Lambda, API Gateway and Step Functions for the glue, ECS and EKS for the services, with CI/CD, monitoring and security across every environment.</p>
+          <dl class="stacklist" data-rise-list>
+            <div><dt>Agents</dt><dd>Claude Agent SDK, Claude Code skills and subagents, MCP servers, LangGraph, LangChain</dd></div>
+            <div><dt>AWS</dt><dd>Bedrock, AgentCore, Lambda, API Gateway, Step Functions, ECS, EKS, SageMaker, S3, RDS, CloudWatch</dd></div>
+            <div><dt>Studying</dt><dd>AWS Certified AI Practitioner, AWS Solutions Architect – Associate</dd></div>
+          </dl>
+        </div>
+        <figure class="ch-figure" data-open>
+          <img src="assets/img/gen/agents.webp" alt="A coil of bright orange fibre-optic patch cables on a dark navy ground" width="1856" height="2304" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="proof proof-agents proof-full">
+        <div class="proof-text">
+          <h3 class="sub">Run the agent</h3>
+          <p>Pick a request and watch the pattern I build: the agent plans, calls tools through MCP, checks what came back and answers. Every AWS service it touches lights up.</p>
+          <p class="note">A replay with sample data. No model is called from this page.</p>
+        </div>
+        <div class="proof-controls">
+          <div class="asks" role="radiogroup" aria-label="Request">
+            <button type="button" role="radio" aria-checked="true" data-ask="deploys">Why did last week’s deploys fail?</button>
+            <button type="button" role="radio" aria-checked="false" data-ask="churn">Which customers left after the price change?</button>
+            <button type="button" role="radio" aria-checked="false" data-ask="docs">Is our refund policy the same in the EU?</button>
+          </div>
+          <button type="button" class="btn btn-accent" id="agent-run">Run the agent</button>
+        </div>
+        <div class="ui-frame agent" data-ui>
+          <svg class="arch" id="arch" viewBox="0 0 640 300" role="img" aria-label="Architecture: the request goes through API Gateway to Lambda, into an agent on Bedrock AgentCore that calls Claude on Bedrock and MCP servers on ECS, which read from RDS and S3; every step is traced in CloudWatch."></svg>
+          <pre class="trace" id="trace" aria-live="polite"><code>Press “Run the agent” to start.</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== WORK ============================== -->
+    <section class="work" id="work" data-field="ink" aria-labelledby="work-title">
+      <h2 class="head work-title" id="work-title">Selected work</h2>
+      <div class="work-grid">
+      <ul class="work-names">
+          <li><a href="https://github.com/dineshraju147/Decoder_only_Transformer" target="_blank" rel="noopener" data-cap="Decoder-only transformer · PyTorch, from scratch">Decoder-only transformer<img src="assets/img/work/Decoder_only_Transformer.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">PyTorch</span></li>
+          <li><a href="https://github.com/dineshraju147/make_more" target="_blank" rel="noopener" data-cap="make_more · a WaveNet-style character language model">make_more<img src="assets/img/work/make_more.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">PyTorch</span></li>
+          <li><a href="https://github.com/dineshraju147/vehicle-damage-detection" target="_blank" rel="noopener" data-cap="Vehicle damage detection · ResNet50 transfer learning, about 80% validation accuracy">Vehicle damage detection<img src="assets/img/work/vehicle-damage-detection.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">ResNet50</span></li>
+          <li><a href="https://github.com/dineshraju147/ml-project-credit-risk-model" target="_blank" rel="noopener" data-cap="Credit-risk model · XGBoost and Optuna, AUC 0.98, Streamlit">Credit-risk model<img src="assets/img/work/ml-project-credit-risk-model.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">XGBoost</span></li>
+          <li><a href="https://github.com/dineshraju147/health-insurance-premium-prediction" target="_blank" rel="noopener" data-cap="Insurance premium prediction · 97% accuracy, Streamlit app">Insurance premium prediction<img src="assets/img/work/health-insurance-premium-prediction.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">scikit-learn</span></li>
+          <li><a href="https://github.com/dineshraju147/soil-moisture-prediction-using-machine-learning" target="_blank" rel="noopener" data-cap="Soil-moisture forecasting · R² 0.99, for water-efficient irrigation">Soil-moisture forecasting<img src="assets/img/work/soil-moisture-prediction-using-machine-learning.webp" alt="" width="947" height="768" loading="lazy"></a><span class="yr">Random Forest</span></li>
+          <li><a href="https://github.com/dineshraju147/Business-360" target="_blank" rel="noopener" data-cap="Business 360 · Power BI board for finance, sales, marketing and supply chain">Business 360<img src="assets/img/work/Business-360.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">Power BI</span></li>
+          <li><a href="https://github.com/dineshraju147/Hospitality-Challenge-on-Power-BI" target="_blank" rel="noopener" data-cap="Hospitality analytics · a Power BI challenge on hotel revenue">Hospitality analytics<img src="assets/img/work/Hospitality-Challenge-on-Power-BI.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">Power BI</span></li>
+          <li><a href="https://github.com/dineshraju147/Comprehensive-Analysis-of-the-Android-App-Market" target="_blank" rel="noopener" data-cap="Android app market · exploratory analysis of the Play Store">Android app market<img src="assets/img/work/Comprehensive-Analysis-of-the-Android-App-Market.webp" alt="" width="663" height="534" loading="lazy"></a><span class="yr">Play Store data</span></li>
+          <li><a href="https://github.com/dineshraju147/Excel-Sales-analytics" target="_blank" rel="noopener" data-cap="Excel sales analytics · reports built in Excel and Power Query">Excel sales analytics<img src="assets/img/work/Excel-Sales-analytics.webp" alt="" width="663" height="543" loading="lazy"></a><span class="yr">Excel</span></li>
+        </ul>
+      <figure class="work-preview" aria-hidden="true">
+        <img id="work-preview-img" src="assets/img/work/Decoder_only_Transformer.webp" alt="" width="663" height="543" loading="lazy">
+        <figcaption id="work-preview-cap">Decoder-only transformer · PyTorch, from scratch</figcaption>
+      </figure>
+      </div>
+      <p class="work-foot">Ten projects across deep learning, machine learning and business intelligence. <a href="https://github.com/dineshraju147" target="_blank" rel="noopener">All of it on GitHub</a></p>
+    </section>
+
+    <!-- ============================== EXPERIENCE ============================== -->
+    <section class="experience" id="experience" data-field="paper" aria-labelledby="experience-title">
+      <h2 class="head" id="experience-title">Experience</h2>
+      <ol class="poster">
+        <li><span class="poster-name">Alakai</span><span class="poster-detail">Cloud AI Engineer<br>Feb 2026 – now</span></li>
+        <li><span class="poster-name">GVSU research</span><span class="poster-detail">Research Assistant, explainable AI<br>Jan – Dec 2025</span></li>
+        <li><span class="poster-name">AtliQ</span><span class="poster-detail">Data Analyst Intern<br>Sep – Dec 2024</span></li>
+        <li><span class="poster-name">GVSU campus</span><span class="poster-detail">Operations Assistant<br>Jan 2024 – Dec 2025</span></li>
+      </ol>
+      <div class="edu">
+        <div>
+          <h3 class="sub">Education</h3>
+          <ul class="facts">
+            <li><b>M.S. Applied Computer Science</b> Grand Valley State University, 2024 – 2026</li>
+            <li><b>CCBP 4.0 Fellow</b> NxtWave, 2022 – 2023</li>
+            <li><b>B.Tech Mechanical Engineering</b> Sri Venkateswara University, 2019 – 2023, Best Innovation Project award</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="sub">Credentials</h3>
+          <ul class="facts">
+            <li><b>Microsoft PL-300</b> Power BI Data Analyst Associate, 2025</li>
+            <li><b>DeepLearning.AI</b> Deep Learning Specialization, 2025</li>
+            <li><b>Neo4j</b> <a href="https://graphacademy.neo4j.com/c/c201ba05-49f9-4ddc-bd0e-a23870ddc599/" target="_blank" rel="noopener">Graph database fundamentals, 2025</a></li>
+            <li><b>Codebasics</b> <a href="https://codebasics.io/certificate/CB-50-185394" target="_blank" rel="noopener">SQL, beginner to advanced, 2024</a></li>
+            <li><b>In progress</b> AWS Certified AI Practitioner and Solutions Architect – Associate</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== ABOUT ============================== -->
+    <section class="about" id="about" data-field="paper" aria-labelledby="about-title">
+      <div class="about-panel">
+        <div class="about-left">
+          <h2 class="head about-title" id="about-title">I don’t ship code<br> I can’t explain</h2>
+          <figure class="about-photo" data-open>
+            <img src="assets/img/dinesh.webp" alt="Portrait of Dinesh Kattunga, smiling, in a white shirt" width="512" height="512" loading="lazy">
+          </figure>
+        </div>
+        <div class="about-right">
+          <div class="about-block" data-rise>
+            <h3 class="sub">How I work</h3>
+            <p>Keep it simple. Write the docs someone else can read. Ship a demo fast, measure it, explain the trade-offs, then iterate. For me interpretability isn’t a research topic, it’s a habit.</p>
+          </div>
+          <div class="about-block" data-rise>
+            <h3 class="sub">Off the clock</h3>
+            <p>I write about machine learning on Medium, study for the next AWS exam, and take things apart to see how they work, a habit left over from mechanical engineering.</p>
+          </div>
+          <a class="btn btn-accent" data-rise href="https://medium.com/@kattungadinesh147" target="_blank" rel="noopener">Read my writing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================== CONTACT ============================== -->
+    <section class="contact" id="contact" data-field="accent" aria-labelledby="contact-title">
+      <ul class="rows">
+        <li class="hello" style="--i:0"><h2 id="contact-title">Let’s talk</h2><a class="round" href="mailto:kattungadineshraju@gmail.com?subject=Hello%20Dinesh" aria-label="Email Dinesh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg></a></li>
+        <li class="email" style="--i:1"><a href="mailto:kattungadineshraju@gmail.com?subject=Hello%20Dinesh">kattungadineshraju@gmail.com</a></li>
+        <li style="--i:2"><a href="https://www.linkedin.com/in/dineshkumarraju0223/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li style="--i:3"><a href="https://github.com/dineshraju147" target="_blank" rel="noopener">GitHub</a></li>
+        <li style="--i:4"><a href="https://maps.google.com/?q=Grand+Rapids,+Michigan" target="_blank" rel="noopener">Grand Rapids, Michigan</a></li>
+      </ul>
+    </section>
   </main>
 
-  <!-- Hidden input captures physical keyboard + mobile soft keyboard -->
-  <input id="hidden-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-hidden="true" tabindex="-1" />
-
-  <!-- Screen-reader / no-JS fallback -->
-  <noscript>
-    <div style="color:#8fffc8;background:#050806;font:16px/1.6 monospace;padding:2rem;max-width:52rem;margin:auto">
-      <h1>Dinesh Kumar Raju Kattunga — Cloud AI Engineer</h1>
-      <p>This is an interactive terminal portfolio that needs JavaScript. The short version:</p>
-      <p>I build machine-learning systems and cloud AI platforms. Currently a Cloud AI Engineer at Alakai
-      working on Model Context Protocol (MCP) integrations and AWS architecture. M.S. in Applied Computer
-      Science, Grand Valley State University.</p>
-      <p>Reach me: <a style="color:#60ffb0" href="mailto:kattungadineshraju@gmail.com">kattungadineshraju@gmail.com</a> ·
-      <a style="color:#60ffb0" href="https://www.linkedin.com/in/dineshkumarraju0223/">LinkedIn</a> ·
-      <a style="color:#60ffb0" href="https://github.com/dineshraju147">GitHub</a></p>
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="foot" data-field="paper">
+    <div class="tile tile-statement">
+      <p>Every layer here was built for this page: plain HTML, CSS and JavaScript. Chapter pictures generated with Higgsfield.</p>
+      <p class="legal">© 2026 Dinesh Kumar Raju Kattunga</p>
     </div>
-  </noscript>
+    <nav class="tile tile-nav" aria-label="Footer">
+      <a href="#story">Story</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="https://drive.google.com/file/d/1onQ4SWcswgyV61R8-dHIEMPYjuhJVk3d/view" target="_blank" rel="noopener">Résumé</a>
+      <a href="terminal/">Prefer a terminal?</a>
+    </nav>
+    <div class="tile tile-time">
+      <p>Grand Rapids, Michigan</p>
+      <p class="clock" id="clock">Eastern Time</p>
+    </div>
+    <div class="tile tile-mail">
+      <a href="mailto:kattungadineshraju@gmail.com">kattungadineshraju@gmail.com</a>
+    </div>
+    <div class="tile tile-mark" aria-hidden="true"><span>Dinesh<br>Kattunga</span></div>
+    <a class="tile tile-go" href="mailto:kattungadineshraju@gmail.com?subject=Let%E2%80%99s%20build%20something">
+      <span>Let’s build something</span>
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 38 38 10M16 10h22v22" fill="none" stroke="currentColor" stroke-width="4"/></svg>
+    </a>
+  </footer>
 
-  <script src="app.js"></script>
+  <script src="assets/vendor/gsap.min.js" defer></script>
+  <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="assets/js/stage.js" defer></script>
+  <script src="assets/js/demos.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

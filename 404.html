@@ -1,34 +1,41 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — signal lost</title>
-  <meta name="robots" content="noindex" />
-  <meta http-equiv="refresh" content="2; url=/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050806'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='16' fill='%2360ffb0'%3E%3E_%3C/text%3E%3C/svg%3E" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Dinesh Kattunga</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23111311'/%3E%3Crect x='6' y='6' width='20' height='4' fill='%232B4BEA'/%3E%3Crect x='6' y='10' width='20' height='4' fill='%23F2C811'/%3E%3Crect x='6' y='14' width='20' height='4' fill='%232F5D3A'/%3E%3Crect x='6' y='18' width='20' height='4' fill='%23E9E8E3'/%3E%3Crect x='6' y='22' width='20' height='4' fill='%23FF9900'/%3E%3C/svg%3E">
   <style>
-    html,body{height:100%;margin:0}
-    body{
-      background:radial-gradient(120% 120% at 50% 20%,#0b120d,#050806 60%,#030503);
-      color:#60ffb0;font:16px/1.6 "IBM Plex Mono",ui-monospace,Menlo,monospace;
-      display:grid;place-items:center;text-align:center;padding:2rem;
-      text-shadow:0 0 8px rgba(96,255,176,0.25);
+    @font-face { font-family: "Albert Sans"; src: url("/assets/fonts/albert-sans.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      display: grid; grid-template-rows: 1fr auto; min-height: 100svh;
+      background: #F3B705; color: #121212;
+      font-family: "Albert Sans", "Helvetica Neue", Arial, sans-serif;
     }
-    .box{max-width:34rem}
-    .big{font-size:clamp(3rem,14vw,7rem);font-weight:700;letter-spacing:.1em;color:#d6ffe9;margin:0 0 .3em}
-    a{color:#7cf0ff;text-decoration:none;border-bottom:1px dotted #7cf0ff}
-    .dim{color:#2f9e6a}
-    .blink{animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+    main { padding: clamp(24px, 4vw, 56px); display: grid; align-content: center; gap: 28px; }
+    h1 { margin: 0; font-size: clamp(3.25rem, 0.6rem + 8.6vw, 9rem); font-weight: 600; letter-spacing: -0.04em; line-height: 0.96; }
+    p { margin: 0; font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem); font-weight: 500; max-width: 32ch; line-height: 1.3; }
+    a.btn {
+      justify-self: start; display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px;
+      border-radius: 999px; background: #121212; color: #F3F3F1; font-weight: 600; text-decoration: none;
+      transition: transform 140ms cubic-bezier(.22,1,.36,1);
+    }
+    a.btn:active { transform: scale(0.97); }
+    a.btn:focus-visible { outline: 2px solid #121212; outline-offset: 3px; }
+    .stack { display: flex; height: 18px; }
+    .stack i { flex: 1; }
   </style>
 </head>
 <body>
-  <div class="box">
-    <p class="big">404</p>
-    <p><span class="dim">dinesh@brain:~$</span> cd <span class="dim">$(that_page)</span></p>
-    <p>bash: no such file or directory — that route was never mounted.</p>
-    <p class="dim">redirecting you home<span class="blink">_</span></p>
-    <p><a href="/">→ cd /  (back to the terminal)</a></p>
+  <main>
+    <h1>This layer<br>is missing</h1>
+    <p>The page you asked for isn’t part of the stack. The rest of it is one click away.</p>
+    <a class="btn" href="/">Back to the story</a>
+  </main>
+  <div class="stack" aria-hidden="true">
+    <i style="background:#1D4D9E"></i><i style="background:#F3B705"></i><i style="background:#2E5538"></i><i style="background:#DFD7CC"></i><i style="background:#FF9900"></i><i style="background:#2A374C"></i>
   </div>
 </body>
 </html>

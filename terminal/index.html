@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>dinesh@brain — interactive terminal</title>
+  <meta name="description" content="An interactive CRT terminal portfolio of Dinesh Kumar Raju Kattunga — Cloud AI Engineer at Alakai. Type a command and talk to my second brain: MCP, AWS, and machine learning." />
+  <meta name="author" content="Dinesh Kumar Raju Kattunga" />
+  <meta name="keywords" content="Dinesh Kumar Raju Kattunga, Cloud AI Engineer, Model Context Protocol, MCP, AWS, machine learning engineer, PyTorch, portfolio, Grand Rapids" />
+  <meta name="theme-color" content="#050806" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="dinesh@brain — interactive terminal" />
+  <meta property="og:description" content="Type a command and talk to my second brain. Cloud AI Engineer · MCP · AWS · ML." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dineshraju147.github.io/" />
+  <meta property="og:site_name" content="dinesh@brain" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="dinesh@brain — interactive terminal" />
+  <meta name="twitter:description" content="Type a command and talk to my second brain. Cloud AI Engineer · MCP · AWS · ML." />
+
+  <!-- Structured data: help search engines introduce me -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dinesh Kumar Raju Kattunga",
+    "alternateName": "Dinesh Raju",
+    "jobTitle": "Cloud AI Engineer",
+    "worksFor": { "@type": "Organization", "name": "Alakai" },
+    "url": "https://dineshraju147.github.io/",
+    "email": "kattungadineshraju@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Grand Rapids", "addressRegion": "MI", "addressCountry": "US" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grand Valley State University" },
+    "knowsAbout": ["Model Context Protocol", "AWS", "Machine Learning", "PyTorch", "Large Language Models", "Data Engineering", "Explainable AI"],
+    "sameAs": [
+      "https://www.linkedin.com/in/dineshkumarraju0223/",
+      "https://github.com/dineshraju147",
+      "https://medium.com/@kattungadinesh147"
+    ]
+  }
+  </script>
+
+  <!-- Inline SVG favicon: a phosphor prompt block -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050806'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='16' fill='%2360ffb0'%3E%3E_%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Full-bleed matrix easter-egg canvas -->
+  <canvas id="rain" aria-hidden="true"></canvas>
+
+  <!-- The CRT tube -->
+  <main id="crt" class="crt" role="application" aria-label="Interactive terminal">
+    <div class="bezel">
+      <div class="screen" id="screen">
+        <div class="rollbar" aria-hidden="true"></div>
+
+        <!-- Boot overlay -->
+        <section id="boot" class="boot" aria-hidden="true"></section>
+
+        <!-- Terminal output + live prompt -->
+        <section id="term" class="term" hidden>
+          <div id="output" class="output" aria-live="polite"></div>
+
+          <div id="promptline" class="promptline" hidden>
+            <span class="ps1"><span class="user">dinesh</span><span class="at">@</span><span class="host">brain</span><span class="path">:~$</span></span>
+            <span class="inputwrap"><span id="typed" class="typed"></span><span id="caret" class="caret"></span><span id="ghost" class="ghost"></span></span>
+          </div>
+        </section>
+
+        <!-- Live status HUD (lower third) -->
+        <footer id="hud" class="hud" aria-hidden="true">
+          <span class="hud-cell"><span class="dot"></span> ONLINE</span>
+          <span class="hud-cell" id="hud-loc">Grand Rapids, MI</span>
+          <span class="hud-cell" id="hud-mem">mem 0.00%</span>
+          <span class="hud-cell" id="hud-clock">--:--:--</span>
+        </footer>
+
+      </div>
+      <!-- Bezel hardware detail -->
+      <div class="bezel-foot">
+        <span class="brand">DINESH-OS <b>mk.4</b></span>
+        <span class="led" id="led" title="power"></span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Hidden input captures physical keyboard + mobile soft keyboard -->
+  <input id="hidden-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-hidden="true" tabindex="-1" />
+
+  <!-- Screen-reader / no-JS fallback -->
+  <noscript>
+    <div style="color:#8fffc8;background:#050806;font:16px/1.6 monospace;padding:2rem;max-width:52rem;margin:auto">
+      <h1>Dinesh Kumar Raju Kattunga — Cloud AI Engineer</h1>
+      <p>This is an interactive terminal portfolio that needs JavaScript. The short version:</p>
+      <p>I build machine-learning systems and cloud AI platforms. Currently a Cloud AI Engineer at Alakai
+      working on Model Context Protocol (MCP) integrations and AWS architecture. M.S. in Applied Computer
+      Science, Grand Valley State University.</p>
+      <p>Reach me: <a style="color:#60ffb0" href="mailto:kattungadineshraju@gmail.com">kattungadineshraju@gmail.com</a> ·
+      <a style="color:#60ffb0" href="https://www.linkedin.com/in/dineshkumarraju0223/">LinkedIn</a> ·
+      <a style="color:#60ffb0" href="https://github.com/dineshraju147">GitHub</a></p>
+    </div>
+  </noscript>
+
+  <script src="app.js"></script>
+</body>
+</html>

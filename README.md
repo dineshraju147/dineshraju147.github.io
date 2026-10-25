@@ -1,94 +1,62 @@
-# dinesh@brain — an interactive terminal portfolio
+# Dinesh Kattunga · AI engineer, shipping on AWS
 
-An interactive CRT terminal that is also a real one. The persona at the prompt
-is my **second brain** — it speaks as me, answers questions about my work, and
-happens to be wearing a phosphor-green terminal.
+A story-telling portfolio for **Dinesh Kumar Raju Kattunga**, Cloud AI Engineer at Alakai in
+Grand Rapids, Michigan.
 
 **Live:** https://dineshraju147.github.io/
 
-```
-██████╗ ██╗███╗   ██╗███████╗███████╗██╗  ██╗
-██╔══██╗██║████╗  ██║██╔════╝██╔════╝██║  ██║
-██║  ██║██║██╔██╗ ██║█████╗  ███████╗███████║
-██║  ██║██║██║╚██╗██║██╔══╝  ╚════██║██╔══██║
-██████╔╝██║██║ ╚████║███████╗███████║██║  ██║
-╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-```
+## The idea
 
----
+Dinesh trained as a mechanical engineer, where you understand a machine by drawing its exploded
+view. So the page opens with his: a machined block that comes apart, layer by layer, as you scroll.
+Each layer is a part of an AI product, in the order he learned it, and each becomes a chapter in
+its own colour:
 
-## What it is
+| Chapter | Years | Colour comes from | Live proof on the page |
+|---|---|---|---|
+| Interface | 2022 – 2023 | the blue of a hyperlink | one card, unstyled vs designed |
+| Data | 2023 – 2024 | Power BI yellow | a filterable Business 360-style board |
+| Models | 2024 – 2025 | the field green of his soil-moisture research | a neural network that trains in the browser |
+| Attention | 2025 | the paper of the transformer paper | real scaled dot-product attention over your sentence |
+| Agents on AWS | 2025 – now | AWS ink and orange | an agent run that lights up the AWS architecture |
 
-A single-page, no-build, no-framework portfolio for **Dinesh Kumar Raju
-Kattunga** — Cloud AI Engineer. Type a command and the terminal answers.
-It is designed so *anyone* — recruiter, engineer, or curious visitor — can
-learn about me in under a minute, whether they type or just watch the prompt
-nudge them.
-
-## Try these commands
-
-| command | what it does |
-|---|---|
-| `help` | list every command |
-| `about` | who I am, the short version |
-| `whoami` | …and who you are |
-| `experience` | where I've worked (alias: `work`) |
-| `projects` | selected builds — then `open <name>` |
-| `skills` | the stack, with honest signal bars |
-| `education` · `certs` | degrees, certifications, writing |
-| `ask <question>` | ask my second brain (e.g. `ask what is mcp`) |
-| `contact` · `resume` | how to reach me / grab the PDF |
-| `neofetch` | system card + ASCII portrait |
-| `theme <green\|amber\|ice>` | recolor the whole tube |
-| `matrix` | …you'll see |
-
-Also: `↑`/`↓` walk history, `Tab` accepts the autosuggestion, `Esc` clears the
-line. On mobile, tap the screen to bring up the keyboard.
+The fixed bar takes the colour of the chapter beneath it. After the chapters: an index of selected
+work with a preview, experience as poster lines, an about panel, contact rows and a footer of tiles.
 
 ## How it's built
 
-Three files. No build step, no framework, no dependencies, no images.
+No framework and no build step. Static files served by GitHub Pages.
 
-- **`index.html`** — structure, metadata, JSON-LD, and a no-JS fallback.
-- **`style.css`** — the CRT is *stacked CSS overlays*: scanlines, a drifting
-  roll bar, barrel vignette, corner glare, chromatic misconvergence on the
-  wordmark, and a power-on bloom. Three phosphor themes are CSS custom
-  properties on `:root`; the `theme` command swaps one attribute and the whole
-  tube recolors.
-- **`app.js`** — a real command engine: split → dispatch → echo → history, a
-  Levenshtein "did you mean?" for typos, a self-typing boot sequence, a
-  fish-style autosuggestion ghost, the full-bleed `matrix` canvas, and a living
-  status HUD with a real clock.
+```
+index.html              the page, with JSON-LD Person data and Open Graph tags
+assets/css/site.css     tokens (one typeface, five sizes, one radius), fields, layout, motion
+assets/js/main.js       load sequence, reveals, chapter-coloured bar, the exploded-view scene, clock
+assets/js/demos.js      the five live proofs (plain JS + SVG/canvas, no libraries)
+assets/js/stage.js      the held scroll stage (from tasteskill), on GSAP ScrollTrigger + Lenis
+assets/vendor/          gsap 3.15.0, ScrollTrigger, lenis 1.3.26 (vendored, pinned)
+assets/seq/stack/       66 WebP frames of the exploded view, scrubbed by scroll on a canvas
+assets/img/gen/         chapter photographs and the hero sky (still + 22 s loop)
+assets/img/work/        project thumbnails
+terminal/               the previous interactive-terminal portfolio, kept as an easter egg
+legacy-angular/         the original Angular site
+```
 
-Everything animated respects `prefers-reduced-motion`, and the rain loop pauses
-when the tab is hidden so it never burns a background tab.
+Everything that moves respects `prefers-reduced-motion`; content is only hidden while it is about
+to scroll into view, so links, fast scrolls and crawlers always find it.
 
-## Design process — three iteration passes
+## Imagery
 
-Each pass = ship it, then screenshot at 1440px and 390px, read every shot like a
-hostile art director, fix everything, and add one deliberate upgrade.
+Generated with Higgsfield for this site: the hero sky (Nano Banana, animated with Kling 3.0), the
+five chapter still lifes, and the exploded block (a still, its exploded end frame, and a Kling 3.0
+start/end-frame animation turned into the scroll sequence). Project thumbnails and the portrait are
+Dinesh's own.
 
-1. **Pass 1 — sell the tube.** The CRT read too flat. Strengthened the
-   scanlines, added a drifting roll bar and a power-on bloom, and added an idle
-   hint that cycles suggestions so a non-technical visitor knows the prompt is
-   live.
-2. **Pass 2 — details & reach.** Rebuilt the neofetch ASCII chip so both
-   borders are grid-perfect, added JSON-LD `Person` structured data (so search
-   engines can introduce me too), dropped an unused font, and repositioned the
-   input so mobile soft-keyboards reliably open.
-3. **Pass 3 — the fine-tooth comb.** Verified every command, the typo
-   "did you mean?", tab completion, both themes, the reduced-motion path, and a
-   completely clean console.
+## Design process
 
-## Credits
-
-Designed & built by **Claude** (Anthropic), adapting the concept from
-[FABLE-25 exhibit 09 · `shell`](https://fable-25.netlify.app/shell/) into a
-personal second-brain portfolio. Content and identity: Dinesh Kumar Raju
-Kattunga.
-
-The previous Angular version of this site lives under [`legacy-angular/`](legacy-angular/).
+Art direction from [tasteskill](https://github.com/leonxlnx/taste-skill) (direction: colour
+chapters). Each round was checked with its source lint and real-browser inspector at 1440, 768 and
+390 px and critiqued from the screenshots.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT, see [`LICENSE`](LICENSE).
