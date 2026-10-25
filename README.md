@@ -1,94 +1,61 @@
-# dinesh@brain — an interactive terminal portfolio
+# Dinesh Kattunga · AI engineer, shipping on AWS
 
-An interactive CRT terminal that is also a real one. The persona at the prompt
-is my **second brain** — it speaks as me, answers questions about my work, and
-happens to be wearing a phosphor-green terminal.
+The portfolio of **Dinesh Kumar Raju Kattunga**, Cloud AI Engineer at Alakai in Grand Rapids,
+Michigan.
 
 **Live:** https://dineshraju147.github.io/
 
-```
-██████╗ ██╗███╗   ██╗███████╗███████╗██╗  ██╗
-██╔══██╗██║████╗  ██║██╔════╝██╔════╝██║  ██║
-██║  ██║██║██╔██╗ ██║█████╗  ███████╗███████║
-██║  ██║██║██║╚██╗██║██╔══╝  ╚════██║██╔══██║
-██████╔╝██║██║ ╚████║███████╗███████║██║  ██║
-╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-```
+## The idea
 
----
+An engineer's notebook. Dinesh trained as a mechanical engineer, so the page is built like the pad
+on his desk: graph paper, tape, sticky notes, a dot-matrix name in a hand-drawn box, and sketches
+in the margins. It reads top to bottom:
 
-## What it is
-
-A single-page, no-build, no-framework portfolio for **Dinesh Kumar Raju
-Kattunga** — Cloud AI Engineer. Type a command and the terminal answers.
-It is designed so *anyone* — recruiter, engineer, or curious visitor — can
-learn about me in under a minute, whether they type or just watch the prompt
-nudge them.
-
-## Try these commands
-
-| command | what it does |
+| Section | What it shows |
 |---|---|
-| `help` | list every command |
-| `about` | who I am, the short version |
-| `whoami` | …and who you are |
-| `experience` | where I've worked (alias: `work`) |
-| `projects` | selected builds — then `open <name>` |
-| `skills` | the stack, with honest signal bars |
-| `education` · `certs` | degrees, certifications, writing |
-| `ask <question>` | ask my second brain (e.g. `ask what is mcp`) |
-| `contact` · `resume` | how to reach me / grab the PDF |
-| `neofetch` | system card + ASCII portrait |
-| `theme <green\|amber\|ice>` | recolor the whole tube |
-| `matrix` | …you'll see |
-
-Also: `↑`/`↓` walk history, `Tab` accepts the autosuggestion, `Esc` clears the
-line. On mobile, tap the screen to bring up the keyboard.
+| Intro | A label types hello (once per visit, skippable), then the box draws and the letters of the name drop in |
+| Hero | The name, what he does now (AI agents on AWS), email and résumé |
+| About | The short version, a portrait, and the six areas he works in |
+| How I got here | Five index cards along a route that draws itself as you scroll: the screen, the data, the models, attention, agents on AWS |
+| Selected work | Four project folders that stack as you scroll, then a shelf of seven more projects |
+| Playground | Three tabs. **Run the agent:** ask anything, make a tool time out or hide a prompt injection, approve or decline the agent's action, and watch each AWS service light up. **Sales dashboard:** a Business 360-style Power BI board with filters, cross-filtering and a trend crosshair. **Credit-risk model:** move the decision threshold and read the trade-off on a histogram, ROC curve and confusion matrix, then see why one applicant was approved or rejected. All sample data, generated in the browser |
+| Experience | A logbook of roles, education, and credentials as stamps |
+| Rules I work by | Five pinned notes |
+| Let's talk | Email, with a copy button, LinkedIn, GitHub, Medium and the résumé |
 
 ## How it's built
 
-Three files. No build step, no framework, no dependencies, no images.
+No framework and no build step. Static files served by GitHub Pages.
 
-- **`index.html`** — structure, metadata, JSON-LD, and a no-JS fallback.
-- **`style.css`** — the CRT is *stacked CSS overlays*: scanlines, a drifting
-  roll bar, barrel vignette, corner glare, chromatic misconvergence on the
-  wordmark, and a power-on bloom. Three phosphor themes are CSS custom
-  properties on `:root`; the `theme` command swaps one attribute and the whole
-  tube recolors.
-- **`app.js`** — a real command engine: split → dispatch → echo → history, a
-  Levenshtein "did you mean?" for typos, a self-typing boot sequence, a
-  fish-style autosuggestion ghost, the full-bleed `matrix` canvas, and a living
-  status HUD with a real clock.
+```
+index.html              the page, with JSON-LD Person data and Open Graph tags
+assets/css/notebook.css tokens, paper, stickers, tape, sections, motion and breakpoints
+assets/js/notebook.js   intro, reveals, hand-drawn marks, the story route, the folder stack, tabs, the bar
+assets/js/agent.js      the playable agent replay and its architecture sketch
+assets/js/bi.js         the sales dashboard (sample AtliQ data)
+assets/js/ml.js         the credit-risk threshold explorer and per-applicant explanation
+assets/js/viz.js        small shared chart helpers: ticks, bars, tooltip, data tables
+assets/vendor/          rough.js 4.6.6 (vendored, MIT) for the hand-drawn boxes, lines and diagram
+assets/sketch/          hand-drawn doodles, drawn once with rough.js and saved as SVG
+assets/fonts/           Handjet, Architects Daughter, Albert Sans, JetBrains Mono (self-hosted, OFL)
+assets/img/gen/         still lifes generated with Higgsfield for the project folders
+assets/img/work/        project thumbnails
+terminal/               an earlier interactive-terminal portfolio, kept as an easter egg
+legacy-angular/         the original Angular site
+```
 
-Everything animated respects `prefers-reduced-motion`, and the rain loop pauses
-when the tab is hidden so it never burns a background tab.
+Everything that moves respects `prefers-reduced-motion`. Content is only hidden while it is about
+to scroll into view, so links, fast scrolls and crawlers always find it. The project folders only
+stack on screens tall enough to show a whole folder.
 
-## Design process — three iteration passes
+## Run it locally
 
-Each pass = ship it, then screenshot at 1440px and 390px, read every shot like a
-hostile art director, fix everything, and add one deliberate upgrade.
+```
+python3 -m http.server 8000
+```
 
-1. **Pass 1 — sell the tube.** The CRT read too flat. Strengthened the
-   scanlines, added a drifting roll bar and a power-on bloom, and added an idle
-   hint that cycles suggestions so a non-technical visitor knows the prompt is
-   live.
-2. **Pass 2 — details & reach.** Rebuilt the neofetch ASCII chip so both
-   borders are grid-perfect, added JSON-LD `Person` structured data (so search
-   engines can introduce me too), dropped an unused font, and repositioned the
-   input so mobile soft-keyboards reliably open.
-3. **Pass 3 — the fine-tooth comb.** Verified every command, the typo
-   "did you mean?", tab completion, both themes, the reduced-motion path, and a
-   completely clean console.
-
-## Credits
-
-Designed & built by **Claude** (Anthropic), adapting the concept from
-[FABLE-25 exhibit 09 · `shell`](https://fable-25.netlify.app/shell/) into a
-personal second-brain portfolio. Content and identity: Dinesh Kumar Raju
-Kattunga.
-
-The previous Angular version of this site lives under [`legacy-angular/`](legacy-angular/).
+Then open http://localhost:8000.
 
 ## License
 
-MIT — see [`LICENSE`](LICENSE).
+MIT, see [`LICENSE`](LICENSE).

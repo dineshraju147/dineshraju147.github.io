@@ -40,3 +40,4 @@ Thumbs.db
 
 # model files (if needed)
 src/assets/model/model.py
+.taste-skill/
