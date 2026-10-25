@@ -1,34 +1,52 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — signal lost</title>
-  <meta name="robots" content="noindex" />
-  <meta http-equiv="refresh" content="2; url=/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23050806'/%3E%3Ctext x='5' y='23' font-family='monospace' font-size='16' fill='%2360ffb0'%3E%3E_%3C/text%3E%3C/svg%3E" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Dinesh Kattunga</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23FF9900' stroke='%231B1814' stroke-width='2'/%3E%3Cpath d='M9 10h4a6 6 0 010 12H9zM19 10v12M19 16l5-6M19 16l5 6' fill='none' stroke='%231B1814' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <style>
-    html,body{height:100%;margin:0}
-    body{
-      background:radial-gradient(120% 120% at 50% 20%,#0b120d,#050806 60%,#030503);
-      color:#60ffb0;font:16px/1.6 "IBM Plex Mono",ui-monospace,Menlo,monospace;
-      display:grid;place-items:center;text-align:center;padding:2rem;
-      text-shadow:0 0 8px rgba(96,255,176,0.25);
+    @font-face { font-family: "Handjet"; src: url("/assets/fonts/handjet.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+    @font-face { font-family: "Architects Daughter"; src: url("/assets/fonts/architects-daughter.woff2") format("woff2"); font-display: swap; }
+    @font-face { font-family: "JetBrains Mono"; src: url("/assets/fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 100 800; font-display: swap; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      min-height: 100svh; display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+      color: #1B1814; text-align: center;
+      background-color: #F7F5EF;
+      background-image:
+        linear-gradient(rgba(43, 89, 217, .13) 1px, transparent 1px), linear-gradient(90deg, rgba(43, 89, 217, .13) 1px, transparent 1px),
+        linear-gradient(rgba(43, 89, 217, .075) 1px, transparent 1px), linear-gradient(90deg, rgba(43, 89, 217, .075) 1px, transparent 1px);
+      background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
     }
-    .box{max-width:34rem}
-    .big{font-size:clamp(3rem,14vw,7rem);font-weight:700;letter-spacing:.1em;color:#d6ffe9;margin:0 0 .3em}
-    a{color:#7cf0ff;text-decoration:none;border-bottom:1px dotted #7cf0ff}
-    .dim{color:#2f9e6a}
-    .blink{animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+    main { display: grid; justify-items: center; gap: 22px; }
+    .hand { font: 400 clamp(22px, 1.4vw + 14px, 30px)/1.3 "Architects Daughter", cursive; margin: 0; max-width: 26ch; }
+    h1 {
+      margin: 0; padding: 0.1em 0.3em 0.02em;
+      font: 600 clamp(120px, 26vw, 280px)/0.82 "Handjet", monospace; font-variation-settings: "ELSH" 2;
+      border: 3px solid #FF7A1A; border-radius: 6px 14px 4px 12px; rotate: -1.5deg;
+    }
+    .note { background: #F6C945; padding: 12px 18px 14px; rotate: 2deg; box-shadow: 0 10px 16px -12px rgba(27, 24, 20, .6); }
+    a {
+      display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 24px 0 10px; margin-top: 8px;
+      background: #1B1814; color: #F7F5EF; text-decoration: none;
+      font: 700 14px/1 "JetBrains Mono", monospace; letter-spacing: .16em; text-transform: uppercase;
+      transition: transform 180ms cubic-bezier(.22, 1, .36, 1), box-shadow 180ms cubic-bezier(.22, 1, .36, 1);
+    }
+    a span { display: grid; place-items: center; width: 36px; height: 36px; background: #FF9900; color: #1B1814; }
+    a:hover { transform: translate(-3px, -3px); box-shadow: 5px 5px 0 #FF9900; }
+    a:focus-visible { outline: 3px solid #2B59D9; outline-offset: 3px; }
+    img { width: 120px; height: auto; }
   </style>
 </head>
 <body>
-  <div class="box">
-    <p class="big">404</p>
-    <p><span class="dim">dinesh@brain:~$</span> cd <span class="dim">$(that_page)</span></p>
-    <p>bash: no such file or directory — that route was never mounted.</p>
-    <p class="dim">redirecting you home<span class="blink">_</span></p>
-    <p><a href="/">→ cd /  (back to the terminal)</a></p>
-  </div>
+  <main>
+    <img src="/assets/sketch/plane.svg" alt="" width="160" height="110">
+    <p class="hand">this page got torn out of the notebook</p>
+    <h1>404</h1>
+    <p class="hand note">The rest of it is one click away.</p>
+    <a href="/"><span aria-hidden="true">←</span>Back to the notebook</a>
+  </main>
 </body>
 </html>
