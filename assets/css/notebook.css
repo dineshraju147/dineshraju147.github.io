@@ -273,6 +273,26 @@ html.motion .status .dot::after { animation: ping 2.4s var(--ease) infinite; }
 .dd-net { width: clamp(70px, 8vw, 118px); right: 9%; top: 56%; --k: 18px; }
 .dd-spark { width: 44px; left: 14%; top: 36%; --k: 22px; }
 .dd-spark2 { width: 30px; right: 20%; top: 30%; --k: -20px; }
+
+/* the screen: a square that inverts whatever it passes over, following the pointer (desktop only) */
+.lens-zone { position: relative; display: grid; justify-items: center; width: 100%; }
+.lens { display: none; }
+@media (hover: hover) and (pointer: fine) and (min-width: 901px) {
+  .lens {
+    display: block; position: absolute; left: 50%; top: 50%; z-index: 30;
+    width: var(--lens, clamp(240px, 20vw, 300px)); aspect-ratio: 1;
+    translate: -50% -50%; scale: .35; opacity: 0;
+    pointer-events: none;
+    -webkit-backdrop-filter: invert(1); backdrop-filter: invert(1);
+    transition: opacity 300ms ease-out, scale 300ms ease-out;
+  }
+  .lens i { position: absolute; width: 16px; height: 16px; background: var(--ink); }
+  .lens i:nth-child(1) { left: -8px; top: -8px; }
+  .lens i:nth-child(2) { right: -8px; top: -8px; }
+  .lens i:nth-child(3) { left: -8px; bottom: -8px; }
+  .lens i:nth-child(4) { right: -8px; bottom: -8px; }
+  [data-lens]:hover > .lens { opacity: 1; scale: 1; }
+}
 html.motion .dd-gear { animation: spin 26s linear infinite; }
 @keyframes spin { to { rotate: 360deg; } }
 html.motion .dd-spark, html.motion .dd-spark2 { animation: twinkle 3.2s var(--ease) infinite; }
@@ -752,8 +772,13 @@ html.motion #arch .wire.is-on path { stroke-dasharray: 8 7; animation: flow 700m
    Contact
    ========================================================================= */
 .contact { text-align: center; max-width: calc(var(--max) + var(--gutter) * 2); margin: 0 auto; padding-bottom: clamp(96px, 12vw, 160px); }
-.plane { width: clamp(110px, 12vw, 160px); margin: 0 auto 18px; }
-.contact .display { font-size: clamp(76px, 12vw, 180px); }
+.talk { position: relative; display: grid; justify-items: center; max-width: 860px; margin: 0 auto; }
+.smiley-pop { width: clamp(170px, 17vw, 240px); margin-bottom: clamp(14px, 2vw, 24px); }
+.smiley { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 12px 10px rgba(27, 24, 20, 0.18)); }
+.smiley-eyes { transform-box: fill-box; transform-origin: 50% 50%; }
+.contact .display { font-size: clamp(76px, 12vw, 180px); line-height: .9; }
+.lt-word { display: inline-block; white-space: nowrap; }
+.lt-ch { display: inline-block; }
 .contact-sub { font-size: clamp(21px, .8vw + 16px, 27px); max-width: 38ch; margin: 22px auto 0; line-height: 1.4; }
 .contact-stage { position: relative; max-width: 900px; margin: clamp(64px, 8vw, 104px) auto 0; }
 .profile {
@@ -835,8 +860,12 @@ html.motion #arch .wire.is-on path { stroke-dasharray: 8 7; animation: flow 700m
   html.motion [data-card].armed:not(.is-in) { opacity: 0; translate: var(--from, -40px) 30px; rotate: calc(var(--r) * 4); }
   html.motion [data-card] { transition: opacity 600ms var(--ease), translate 900ms var(--spring), rotate 900ms var(--spring); }
   html.motion .card:nth-child(even) { --from: 40px; }
-  html.motion .plane.armed:not(.is-in) { opacity: 0; translate: -140px 80px; rotate: -18deg; }
-  html.motion .plane { transition: opacity 500ms var(--ease), translate 1200ms var(--ease), rotate 1200ms var(--ease); }
+  html.motion [data-pop].armed:not(.is-in) { opacity: 0; scale: .4; rotate: -14deg; translate: 0 30px; }
+  html.motion [data-pop] { transition: opacity 260ms ease, scale 750ms var(--spring), rotate 750ms var(--spring), translate 750ms var(--spring); }
+  html.motion [data-letters].armed:not(.is-in) .lt-ch { opacity: 0; translate: 0 .5em; }
+  html.motion [data-letters].is-in .lt-ch { transition: opacity 300ms ease calc(240ms + var(--i) * 45ms), translate 650ms var(--spring) calc(240ms + var(--i) * 45ms); }
+  .smiley-eyes { animation: blink 4.4s ease-in-out infinite; }
+  @keyframes blink { 0%, 91%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.12); } }
   html.motion .folder-pic.armed:not(.is-in) { translate: 0 40px; rotate: 10deg; opacity: 0; }
   html.motion .folder-pic { transition: opacity 500ms var(--ease), translate 900ms var(--spring), rotate 900ms var(--spring); }
 }
